@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import HeaderBar from "./components/HeaderBar";
+import SideBar from "./components/SideBar";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <HeaderBar />
+      <div style={{ display: "flex", height: "100%" }}>
+        <SideBar />
+        <Routes>
+          <Route
+            element={<h1>Create tournament</h1>}
+            path="/create-tournament"
+          ></Route>
+          <Route
+            element={<h1>My tournaments</h1>}
+            path="/saved-tournaments"
+          ></Route>
+        </Routes>
+      </div>
+    </>
   );
 }
 
