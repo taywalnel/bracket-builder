@@ -1,0 +1,10 @@
+.matchup-container {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: white;
+}

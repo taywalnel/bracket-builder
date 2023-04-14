@@ -1,11 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap");
+
 #root {
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+.root-page-route-outlet {
+  height: 100%;
+  width: 100%;
+  max-width: 1000px;
+  position: relative;
+}
+
+.create-page-root {
+  padding: 40px;
+  box-sizing: border-box;
+  background-color: #202020;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .grid-center {
   display: grid;
   place-items: center;
+}
+
+.large-button {
+  height: 40px;
+  border: unset;
+  border-radius: 20px;
+  width: 350px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+p {
+  margin: 0;
+}
+
+input,
+select {
+  height: 40px;
+  padding: 0 20px;
+  width: 280px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  border: none;
+  width: 100%;
+}
+
+select {
+  border-right: 10px solid transparent;
+}
+
+input:focus-visible,
+select:focus-visible {
+  outline: none;
+}
+
+.icon-button-component,
+.text-button-component {
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.icon-button-component.disabled {
+  background-color: grey !important;
+  transform: scale(0.8);
+}
+
+.text-button-component.disabled {
+  background-color: grey !important;
+}
+
+.home-page-navigation-box {
+  height: 300px;
+  /* border-radius: 10px; */
+  color: black;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.home-page-navigation-box:hover {
+  transform: scale(1.02);
+}
+
+.react-link {
+  text-decoration: none;
 }

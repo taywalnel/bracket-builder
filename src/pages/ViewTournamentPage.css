@@ -1,0 +1,44 @@
+.view-page-root {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 40px;
+  box-sizing: border-box;
+  background-color: #202020;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.needs-name {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 10px;
+}
+
+.view-page-root2 {
+  flex-grow: 1;
+  display: flex;
+  gap: 20px;
+}
+
+.view-page-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bracket-round {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 20px;
+  flex: 1;
+}
+
+.view-page-round-labels {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  color: white;
+}
