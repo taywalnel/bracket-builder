@@ -1,8 +1,7 @@
 import React from "react";
-import IconButton from "./IconButton";
 import { Link } from "react-router-dom";
 import "./HeaderBar.css";
-import TextIconButton from "./TextIconButton";
+import TextIconButton from "../TextIconButton/TextIconButton";
 
 function HeaderBar() {
   return (

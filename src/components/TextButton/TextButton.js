@@ -1,4 +1,5 @@
 import React from "react";
+import "./TextButton.css";
 
 function TextButton({
   buttonText,
@@ -11,16 +12,11 @@ function TextButton({
   return (
     <div
       onClick={disabled ? null : clickHandler}
-      className={`text-button-component grid-center ${
-        disabled ? "disabled" : ""
-      }`}
+      className={`text-button-container ${disabled ? "disabled" : ""}`}
       style={{
         width,
-        height: "40px",
         backgroundColor,
-        borderRadius: "20px",
         color,
-        cursor: "pointer",
       }}
     >
       {buttonText}

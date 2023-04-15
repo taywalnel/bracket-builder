@@ -1,5 +1,6 @@
 import React from "react";
-import BracketMatchUp from "./BracketMatchUp";
+import "./BracketRound.css";
+import BracketMatchUp from "../BracketMatchUp/BracketMatchUp";
 
 function BracketRound({ round, setRound, index }) {
   function updateMatchUpHandler(matchUp) {
@@ -11,8 +12,8 @@ function BracketRound({ round, setRound, index }) {
   }
 
   return (
-    <div className="view-page-column">
-      <div className="bracket-round">
+    <div className="bracket-round-container">
+      <div className="bracket-round-inner-container">
         {round.map((matchUp) => (
           <BracketMatchUp
             key={matchUp.id}

@@ -1,5 +1,5 @@
 import "./BracketMatchUp.css";
-import BracketPlayerRow from "./BracketPlayerRow";
+import BracketPlayerRow from "../BracketPlayerRow/BracketPlayerRow";
 
 function BracketMatchUp({ matchUp, setMatchUp }) {
   function isWinner(player) {

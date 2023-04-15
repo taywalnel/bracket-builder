@@ -1,9 +1,9 @@
 import "./App.css";
-import HeaderBar from "./components/HeaderBar";
 import { Routes, Route } from "react-router-dom";
-import CreateTournamentPage from "./pages/CreateTournamentPage";
+import CreateBracketPage from "./pages/CreateBracketPage/CreateBracketPage";
 import { useState } from "react";
-import ViewTournamentPage from "./pages/ViewTournamentPage";
+import ViewTournamentPage from "./pages/ViewBracketPage/ViewBracketPage";
+import HeaderBar from "./components/HeaderBar/HeaderBar";
 
 function App() {
   const [tournaments, setTournaments] = useState([]);
@@ -17,23 +17,14 @@ function App() {
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+    <div className="app-container">
       <HeaderBar />
-      <div
-        className="grid-center"
-        style={{
-          flex: "1",
-          backgroundColor: "#333",
-          padding: "40px",
-        }}
-      >
-        <div className="root-page-route-outlet grid-center">
+      <div className="app-route-outlet-wrapper">
+        <div className="app-route-outlet">
           <Routes>
             <Route
               path="/create"
-              element={
-                <CreateTournamentPage saveNewBracket={saveNewTournament} />
-              }
+              element={<CreateBracketPage saveNewBracket={saveNewTournament} />}
             ></Route>
             <Route path="/saved" element={<h1>saved</h1>}></Route>
             <Route

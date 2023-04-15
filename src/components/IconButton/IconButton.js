@@ -1,4 +1,5 @@
 import React from "react";
+import "./IconButton.css";
 
 function IconButton({
   iconType,
@@ -10,15 +11,11 @@ function IconButton({
   return (
     <div
       onClick={disabled ? null : clickHandler}
-      className={`icon-button-component grid-center ${
-        disabled ? "disabled" : ""
-      }`}
+      className={`icon-button-container ${disabled ? "disabled" : ""}`}
       style={{
         width: `${diameter}px`,
         height: `${diameter}px`,
         backgroundColor,
-        borderRadius: "100%",
-        cursor: "pointer",
       }}
     >
       <img

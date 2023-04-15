@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import IconButton from "../components/IconButton";
-import TextButton from "../components/TextButton";
-import { BuildBracket } from "../services/BracketBuilderService";
+import IconButton from "../../components/IconButton/IconButton";
+import { BuildBracket } from "../../services/BracketBuilderService";
 import { Link, useNavigate } from "react-router-dom";
+import "./CreateBracketPage.css";
+import TextButton from "../../components/TextButton/TextButton";
 
-function CreateTournamentPage({ saveNewBracket }) {
+function CreateBracketPage({ saveNewBracket }) {
   const [players, setPlayers] = useState([
     { id: uuidv4(), name: "", score: null, isBye: false },
   ]);
@@ -121,98 +122,40 @@ function CreateTournamentPage({ saveNewBracket }) {
   }
 
   return (
-    <div
-      className="create-page-root"
-      style={{
-        height: "100%",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        gap: "40px",
-      }}
-    >
-      <div
-        style={{
-          color: "white",
-          display: "flex",
-          flexDirection: "column",
-          gap: "30px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-          }}
-        >
+    <div className="create-page-root">
+      <div className="create-page-form-container">
+        <div className="create-page-form-field-container">
           <p>Tournament name</p>
           {showTournamentNameValidationError ? (
-            <span style={{ color: "red" }}>Required field</span>
+            <span className="required-field-text">Required field</span>
           ) : null}
           <input onChange={updateTournamentName} name="name"></input>
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-          }}
-        >
+        <div className="create-page-form-field-container">
           <p>Rank players by</p>
           <select onChange={updateRankBy} name="ranking">
             <option>Order entered</option>
             <option>Randomize</option>
           </select>
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-          }}
-        >
+        <div className="create-page-form-field-container">
           <div>
             <span style={{ paddingRight: "10px" }}>Players</span>
-            <div
-              style={{
-                display: "inline-grid",
-                placeItems: "center",
-                width: "27px",
-                height: "27px",
-                backgroundColor: "#333",
-                color: "white",
-                borderRadius: "100%",
-              }}
-            >
+            <div className="create-page-player-count">
               {players.filter((p) => !!p.name).length}
             </div>
           </div>
 
           {showPlayersValidationError ? (
-            <span style={{ color: "red" }}>Please add at least 2 players</span>
+            <span className="required-field-text">
+              Please add at least 2 players
+            </span>
           ) : null}
-          <div
-            style={{
-              maxHeight: "170px",
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-              alignContent: "start",
-              gap: "10px",
-              overflow: "scroll",
-              backgroundColor: "#333",
-              borderRadius: "20px",
-            }}
-          >
+          <div className="create-page-add-players-input-container">
             {players.map((player, index) => (
               <div
+                className="create-page-add-player-input-container"
                 key={player.id}
-                style={{
-                  display: "flex",
-                  gap: "10px",
-                  minWidth: "200px",
-                }}
               >
                 <input
                   value={player.name}
@@ -233,7 +176,7 @@ function CreateTournamentPage({ saveNewBracket }) {
           </div>
         </div>
       </div>
-      <div style={{ display: "flex", gap: "20px" }}>
+      <div className="create-page-actions-container">
         <Link className="react-link" to="/home" style={{ width: "100%" }}>
           <TextButton
             buttonText="Exit"
@@ -255,4 +198,4 @@ function CreateTournamentPage({ saveNewBracket }) {
   );
 }
 
-export default CreateTournamentPage;
+export default CreateBracketPage;

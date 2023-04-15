@@ -1,0 +1,13 @@
+.bracket-round-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bracket-round-inner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 20px;
+  flex: 1;
+}

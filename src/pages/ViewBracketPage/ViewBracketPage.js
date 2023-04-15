@@ -1,8 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import "./ViewTournamentPage.css";
-import BracketRound from "../components/BracketRound";
-import { generateNextRounds } from "../services/BracketBuilderService";
+import "./ViewBracketPage.css";
+import { generateNextRounds } from "../../services/BracketBuilderService";
+import BracketRound from "../../components/BracketRound/BracketRound";
 
 function ViewBracketPage({ tournaments, setTournaments }) {
   const { id } = useParams();

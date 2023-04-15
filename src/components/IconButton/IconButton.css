@@ -1,0 +1,12 @@
+.icon-button-container {
+  display: grid;
+  place-items: center;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.icon-button-container.disabled {
+  background-color: grey !important;
+  transform: scale(0.8);
+}
