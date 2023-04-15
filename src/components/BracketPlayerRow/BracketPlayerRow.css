@@ -26,8 +26,9 @@
   display: none;
 }
 
-.matchup-player-container.show-winner-button:hover {
-  background-color: #60e85668;
+.matchup-player-container.show-winner-button:hover,
+.matchup-player-container.is-winner {
+  background-color: #60e85636;
 }
 
 .matchup-player-container.show-winner-button:hover
@@ -37,10 +38,6 @@
 
 .matchup-player-container.is-winner .matchup-player-won-button-container {
   display: block;
-}
-
-.matchup-player-container.is-winner:hover {
-  background-color: white;
 }
 
 .matchup-player-winner-identifier {

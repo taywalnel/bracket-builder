@@ -2,14 +2,14 @@ import React from "react";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import IconButton from "../../components/IconButton/IconButton";
-import { BuildBracket } from "../../services/BracketBuilderService";
+import { GenerateTournament } from "../../services/TournamentBuilderService";
 import { Link, useNavigate } from "react-router-dom";
 import "./CreateBracketPage.css";
 import TextButton from "../../components/TextButton/TextButton";
 
 function CreateBracketPage({ saveNewBracket }) {
   const [players, setPlayers] = useState([
-    { id: uuidv4(), name: "", score: null, isBye: false },
+    { name: "", isBye: false, id: uuidv4() },
   ]);
   const [tournamentName, setTournamentName] = useState();
   const [rankBy, setRankBy] = useState();
@@ -52,7 +52,7 @@ function CreateBracketPage({ saveNewBracket }) {
   }
 
   function addPlayer() {
-    const newPlayer = { id: uuidv4(), name: "", score: null, isBye: false };
+    const newPlayer = { name: "", isBye: false, id: uuidv4() };
     setPlayers((currentPlayers) => [...currentPlayers, newPlayer]);
   }
 
@@ -64,7 +64,7 @@ function CreateBracketPage({ saveNewBracket }) {
     if (!inputsAreValid()) return;
     const updatedPlayers = removeBlankPlayers();
     const playersWithRanking = applyRankingToPlayers(updatedPlayers);
-    const newBracket = BuildBracket(tournamentName, playersWithRanking);
+    const newBracket = GenerateTournament(tournamentName, playersWithRanking);
     saveNewBracket(newBracket);
     navigateToViewNewBracket(newBracket.id);
   }

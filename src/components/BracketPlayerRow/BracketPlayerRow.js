@@ -1,5 +1,4 @@
 import React from "react";
-import IconButton from "../IconButton/IconButton";
 import "./BracketPlayerRow.css";
 
 function BracketPlayerRow({
@@ -14,7 +13,7 @@ function BracketPlayerRow({
     selectWinner(player);
   }
 
-  return player.name ? (
+  return (
     <div
       onClick={setWinnerHandler}
       className={`matchup-player-container ${isWinner ? "is-winner" : ""} ${
@@ -23,7 +22,7 @@ function BracketPlayerRow({
     >
       <div className="matchup-player-details-container">
         <p style={{ color: "grey" }}>{player.rank}</p>
-        <p>{player.name}</p>
+        <p style={{ color: player.isBye ? "grey" : "black" }}>{player.name}</p>
       </div>
       <div className="matchup-player-won-button-container">
         <img
@@ -33,8 +32,6 @@ function BracketPlayerRow({
         ></img>
       </div>
     </div>
-  ) : (
-    <div className="matchup-player-empty-container"></div>
   );
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import "./ViewBracketPage.css";
-import { generateNextRounds } from "../../services/BracketBuilderService";
+import { generateFullBracket } from "../../services/TournamentBuilderService";
 import BracketRound from "../../components/BracketRound/BracketRound";
 
 function ViewBracketPage({ tournaments, setTournaments }) {
@@ -9,7 +9,7 @@ function ViewBracketPage({ tournaments, setTournaments }) {
   const currentTournament = tournaments.find((b) => b.id === id);
 
   function updateRoundHandler(updatedRound, index) {
-    const updatedRounds = generateNextRounds(updatedRound);
+    const updatedRounds = generateFullBracket(updatedRound);
     currentTournament.bracket.length = index;
     currentTournament.bracket = currentTournament.bracket.concat(updatedRounds);
 
