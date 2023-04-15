@@ -26,7 +26,11 @@ function BracketPlayerRow({
         <p>{player.name}</p>
       </div>
       <div className="matchup-player-won-button-container">
-        <IconButton diameter="40" iconType="tick" />
+        <img
+          className="matchup-player-winner-identifier"
+          alt="tick-icon"
+          src="/assets/tick.svg"
+        ></img>
       </div>
     </div>
   ) : (

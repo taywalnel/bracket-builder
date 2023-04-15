@@ -42,3 +42,8 @@
 .matchup-player-container.is-winner:hover {
   background-color: white;
 }
+
+.matchup-player-winner-identifier {
+  width: 20px;
+  height: 20px;
+}
