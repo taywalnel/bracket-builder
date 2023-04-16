@@ -4,7 +4,7 @@ import BracketPlayerRow from "../BracketPlayerRow/BracketPlayerRow";
 function BracketMatchUp({ matchup, selectWinner }) {
   function isWinner(player) {
     if (!matchup.winner) return false;
-    return matchup.winner.name === player.name;
+    return matchup.winner.id === player.id;
   }
 
   function selectWinnerHandler(player) {
