@@ -7,7 +7,7 @@ function BracketPlayerRow({
   selectWinner,
   allowSelectWinner,
 }) {
-  function setWinnerHandler() {
+  function selectWinnerHandler() {
     if (isWinner) return;
     if (!allowSelectWinner) return;
     selectWinner(player);
@@ -15,7 +15,7 @@ function BracketPlayerRow({
 
   return (
     <div
-      onClick={setWinnerHandler}
+      onClick={selectWinnerHandler}
       className={`matchup-player-container ${isWinner ? "is-winner" : ""} ${
         allowSelectWinner ? "show-winner-button" : ""
       }`}

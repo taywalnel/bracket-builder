@@ -176,24 +176,13 @@ function CreateBracketPage({ saveNewBracket }) {
           </div>
         </div>
       </div>
-      <div className="create-page-actions-container">
-        <Link className="react-link" to="/home" style={{ width: "100%" }}>
-          <TextButton
-            buttonText="Exit"
-            width="100%"
-            clickHandler={null}
-            backgroundColor="#333"
-            color="white"
-          />
-        </Link>
 
-        <TextButton
-          buttonText="Generate"
-          width="100%"
-          clickHandler={generateBracketHandler}
-          backgroundColor="#6BFF8E"
-        />
-      </div>
+      <TextButton
+        buttonText="Generate"
+        width="100%"
+        clickHandler={generateBracketHandler}
+        backgroundColor="#6BFF8E"
+      />
     </div>
   );
 }

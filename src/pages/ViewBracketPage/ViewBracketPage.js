@@ -1,22 +1,46 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import "./ViewBracketPage.css";
-import { generateFullBracket } from "../../services/TournamentBuilderService";
 import BracketRound from "../../components/BracketRound/BracketRound";
 
 function ViewBracketPage({ tournaments, setTournaments }) {
   const { id } = useParams();
   const currentTournament = tournaments.find((b) => b.id === id);
 
-  function updateRoundHandler(updatedRound, index) {
-    const updatedRounds = generateFullBracket(updatedRound);
-    currentTournament.bracket.length = index;
-    currentTournament.bracket = currentTournament.bracket.concat(updatedRounds);
-
-    updateTournamentHandler(currentTournament);
+  function selectWinnerHandler(matchupResult) {
+    updateBracketAfterWinnerSelected(matchupResult);
+    updateTournament(currentTournament);
   }
 
-  function updateTournamentHandler(updatedTournament) {
+  function updateBracketAfterWinnerSelected(matchupResult) {
+    updateMatchup(matchupResult);
+    moveWinnerToNextRound(matchupResult);
+  }
+
+  function updateMatchup(matchupResult) {
+    currentTournament.bracket[matchupResult.roundIndex].map((matchup) => {
+      if (matchup.id === matchupResult.matchupId) {
+        matchup.winner = matchupResult.winner;
+      }
+    });
+  }
+
+  function moveWinnerToNextRound(matchupResult) {
+    const currentRound = currentTournament.bracket[matchupResult.roundIndex];
+    const nextRound = currentTournament.bracket[matchupResult.roundIndex + 1];
+    if (!nextRound) return;
+
+    const indexOfUpdatedMatchup = currentRound.findIndex(
+      (matchup) => matchup.id === matchupResult.matchupId
+    );
+    const indexOfMatchupToMovePlayerTo = Math.floor(indexOfUpdatedMatchup / 2);
+    const playerToUpdateInNextRound =
+      indexOfUpdatedMatchup % 2 === 0 ? "player1" : "player2";
+    nextRound[indexOfMatchupToMovePlayerTo][playerToUpdateInNextRound] =
+      matchupResult.winner;
+  }
+
+  function updateTournament(updatedTournament) {
     const updatedTournaments = tournaments.map((b) => {
       if (b.id === id) return updatedTournament;
       return b;
@@ -42,6 +66,7 @@ function ViewBracketPage({ tournaments, setTournaments }) {
           <div className="view-page-round-labels">
             {currentTournament.bracket.map((round, index) => (
               <p
+                key={index}
                 style={{
                   display: "inline-block",
                   width: "200px",
@@ -57,7 +82,7 @@ function ViewBracketPage({ tournaments, setTournaments }) {
               <BracketRound
                 key={index}
                 round={round}
-                setRound={updateRoundHandler}
+                selectWinner={selectWinnerHandler}
                 index={index}
               />
             ))}

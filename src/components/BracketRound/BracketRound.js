@@ -2,23 +2,18 @@ import React from "react";
 import "./BracketRound.css";
 import BracketMatchUp from "../BracketMatchUp/BracketMatchUp";
 
-function BracketRound({ round, setRound, index }) {
-  function updateMatchUpHandler(matchUp) {
-    const updatedRound = round.map((m) => {
-      if (m.id === matchUp.id) return matchUp;
-      return m;
-    });
-    setRound(updatedRound, index);
+function BracketRound({ round, selectWinner, index }) {
+  function selectWinnerHandler(matchupResult) {
+    selectWinner({ ...matchupResult, roundIndex: index });
   }
-
   return (
     <div className="bracket-round-container">
       <div className="bracket-round-inner-container">
-        {round.map((matchUp) => (
+        {round.map((matchup) => (
           <BracketMatchUp
-            key={matchUp.id}
-            matchUp={matchUp}
-            setMatchUp={updateMatchUpHandler}
+            key={matchup.id}
+            matchup={matchup}
+            selectWinner={selectWinnerHandler}
           />
         ))}
       </div>

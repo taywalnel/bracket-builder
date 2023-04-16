@@ -1,31 +1,31 @@
 import "./BracketMatchUp.css";
 import BracketPlayerRow from "../BracketPlayerRow/BracketPlayerRow";
 
-function BracketMatchUp({ matchUp, setMatchUp }) {
+function BracketMatchUp({ matchup, selectWinner }) {
   function isWinner(player) {
-    if (!matchUp.winner) return false;
-    return matchUp.winner.name === player.name;
+    if (!matchup.winner) return false;
+    return matchup.winner.name === player.name;
   }
 
   function selectWinnerHandler(player) {
-    setMatchUp({ ...matchUp, winner: player });
+    selectWinner({ winner: player, matchupId: matchup.id });
   }
 
   function arePlayersReady() {
-    return matchUp.player1.name && matchUp.player2.name;
+    return matchup.player1.name && matchup.player2.name;
   }
 
   return (
     <div className="matchup-container">
       <BracketPlayerRow
-        player={matchUp.player1}
-        isWinner={isWinner(matchUp.player1)}
+        player={matchup.player1}
+        isWinner={isWinner(matchup.player1)}
         selectWinner={selectWinnerHandler}
         allowSelectWinner={arePlayersReady()}
       />
       <BracketPlayerRow
-        player={matchUp.player2}
-        isWinner={isWinner(matchUp.player2)}
+        player={matchup.player2}
+        isWinner={isWinner(matchup.player2)}
         selectWinner={selectWinnerHandler}
         allowSelectWinner={arePlayersReady()}
       />
