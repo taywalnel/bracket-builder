@@ -176,7 +176,6 @@ function CreateBracketPage({ saveNewBracket }) {
           </div>
         </div>
       </div>
-
       <TextButton
         buttonText="Generate"
         width="100%"

@@ -52,11 +52,6 @@
   min-width: 200px;
 }
 
-.create-page-actions-container {
-  display: flex;
-  gap: 20px;
-}
-
 .required-field-text {
   color: red;
 }
