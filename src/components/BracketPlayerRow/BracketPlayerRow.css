@@ -6,12 +6,11 @@
   padding: 4px;
   border-radius: 10px;
   background-color: white;
-  cursor: pointer;
-  /* transition: background-color 0.3s ease-in-out; */
-}
-.matchup-player-container.is-winner {
   cursor: default;
 }
+/* .matchup-player-container.is-winner {
+  cursor: default;
+} */
 
 .matchup-player-empty-container {
   height: 20px;
@@ -29,6 +28,10 @@
 .matchup-player-container.show-winner-button:hover,
 .matchup-player-container.is-winner {
   background-color: #60e85636;
+}
+
+.matchup-player-container.show-winner-button:hover {
+  cursor: pointer;
 }
 
 .matchup-player-container.show-winner-button:hover

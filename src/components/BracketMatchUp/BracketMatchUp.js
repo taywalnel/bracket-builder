@@ -11,7 +11,11 @@ function BracketMatchUp({ matchup, selectWinner }) {
     selectWinner({ winner: player, matchupId: matchup.id });
   }
 
-  function arePlayersReady() {
+  function allowSelectWinner() {
+    return !matchup.winner && bothPlayersReadyForMatchup();
+  }
+
+  function bothPlayersReadyForMatchup() {
     return matchup.player1.name && matchup.player2.name;
   }
 
@@ -21,13 +25,13 @@ function BracketMatchUp({ matchup, selectWinner }) {
         player={matchup.player1}
         isWinner={isWinner(matchup.player1)}
         selectWinner={selectWinnerHandler}
-        allowSelectWinner={arePlayersReady()}
+        allowSelectWinner={allowSelectWinner()}
       />
       <BracketPlayerRow
         player={matchup.player2}
         isWinner={isWinner(matchup.player2)}
         selectWinner={selectWinnerHandler}
-        allowSelectWinner={arePlayersReady()}
+        allowSelectWinner={allowSelectWinner()}
       />
     </div>
   );
