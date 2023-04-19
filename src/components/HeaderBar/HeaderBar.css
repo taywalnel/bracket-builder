@@ -5,13 +5,7 @@
   background-color: #202020;
 
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0px 20px;
   box-sizing: border-box;
-}
-
-.header-bar-nav-links {
-  display: flex;
-  gap: 20px;
 }

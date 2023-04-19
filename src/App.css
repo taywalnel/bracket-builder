@@ -4,12 +4,17 @@
   height: 100vh;
 }
 
-.app-route-outlet-wrapper {
+.app-main-content-container {
   flex: 1;
   background-color: #333;
-  padding: 40px;
+  display: flex;
+}
+
+.app-route-outlet-wrapper {
+  flex: 1;
   display: grid;
   place-items: center;
+  padding: 40px;
 }
 
 .app-route-outlet {
