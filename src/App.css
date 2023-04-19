@@ -6,7 +6,6 @@
 
 .app-main-content-container {
   flex: 1;
-  background-color: #333;
   display: flex;
 }
 
@@ -15,6 +14,11 @@
   display: grid;
   place-items: center;
   padding: 40px;
+  background: linear-gradient(
+    180deg,
+    rgba(60, 60, 60, 1) 0%,
+    rgba(97, 97, 97, 1) 100%
+  );
 }
 
 .app-route-outlet {
