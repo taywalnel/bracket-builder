@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import "./ViewBracketPage.css";
 import BracketRound from "../../components/BracketRound/BracketRound";
 
-function ViewBracketPage({ tournaments, setTournaments }) {
+function ViewBracketPage({ brackets, setBrackets }) {
   const { id } = useParams();
-  const currentTournament = tournaments.find((b) => b.id === id);
+  const currentTournament = brackets.find((b) => b.id === id);
 
   function selectWinnerHandler(matchupResult) {
     updateBracketAfterWinnerSelected(matchupResult);
@@ -41,11 +41,11 @@ function ViewBracketPage({ tournaments, setTournaments }) {
   }
 
   function updateTournament(updatedTournament) {
-    const updatedTournaments = tournaments.map((b) => {
+    const updatedTournaments = brackets.map((b) => {
       if (b.id === id) return updatedTournament;
       return b;
     });
-    setTournaments(updatedTournaments);
+    setBrackets(updatedTournaments);
   }
 
   return currentTournament ? (

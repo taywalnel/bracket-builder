@@ -6,8 +6,11 @@ export const GenerateTournament = (
 ) => {
   const tournament = {
     title: titleEnteredByUser,
+    dateCreated: new Date(),
+    tournamentSize: getSizeOfTournament(playersEnteredByUser.length),
     bracket: generateBracket(playersEnteredByUser),
     id: uuidv4(),
+    status: "in-progress",
   };
   return tournament;
 
