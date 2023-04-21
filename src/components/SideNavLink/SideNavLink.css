@@ -1,0 +1,17 @@
+.side-nav-link-root {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 16px;
+}
+
+.side-nav-link-active {
+  width: 6px;
+  height: 6px;
+  border-radius: 100%;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.side-nav-link-active.active-page {
+  background-color: white;
+}

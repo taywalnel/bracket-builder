@@ -1,6 +1,8 @@
 .saved-bracket-item-root {
   display: flex;
+  align-items: center;
   gap: 10px;
+  background-color: rgba(97, 97, 97, 1);
   color: white;
   padding: 10px;
 }
@@ -12,5 +14,8 @@
 }
 
 .saved-bracket-item-column {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   flex-basis: 100%;
 }

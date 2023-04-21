@@ -3,7 +3,7 @@ import "./SavedBracketsPage.css";
 import SavedBracketListItem from "../../components/SavedBracketListItem/SavedBracketListItem";
 
 function SavedBracketsPage({ brackets }) {
-  const headers = ["Title", "Date created", "Tournament size", "Status"];
+  const headers = ["Title", "Created on", "Bracket size", "Status"];
   return (
     <div className="saved-page-root ">
       <h2 className="page-header">Saved brackets</h2>

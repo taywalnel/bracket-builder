@@ -51,9 +51,9 @@ function ViewBracketPage({ brackets, setBrackets }) {
   return currentTournament ? (
     <div className="view-page-root">
       <div className="needs-name">
-        <h1 style={{ color: "white", flexBasis: "20px" }}>
+        <h2 style={{ color: "white", flexBasis: "20px" }}>
           {currentTournament.title}
-        </h1>
+        </h2>
 
         <div
           style={{

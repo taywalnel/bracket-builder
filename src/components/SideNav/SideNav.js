@@ -1,35 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./SideNav.css";
-import { Link } from "react-router-dom";
-import IconButton from "../IconButton/IconButton";
+import SideNavLink from "../SideNavLink/SideNavLink";
+import { useLocation } from "react-router-dom";
 
 function SideNav() {
+  const location = useLocation();
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    setCount(count + 1);
+  }, [location]);
+
   return (
     <div className="side-nav-container">
       <div className="side-nav-links">
-        <Link className="react-link" to="/create">
-          <IconButton
-            iconType="plus"
-            backgroundColor="rgb(56, 189, 255)"
-            diameter="45"
-          />
-        </Link>
-        <Link className="react-link" to="/saved">
-          <IconButton
-            iconType="files"
-            backgroundColor="rgb(56, 189, 255)"
-            diameter="45"
-          />
-        </Link>
+        <SideNavLink
+          currentPage={location.pathname}
+          iconType="plus"
+          to="/create"
+        />
+        <SideNavLink
+          currentPage={location.pathname}
+          iconType="files"
+          to="/saved"
+        />
       </div>
       <div className="side-nav-links">
-        <Link className="react-link" to="/account">
-          <IconButton
-            iconType="user"
-            backgroundColor="rgb(56, 189, 255)"
-            diameter="45"
-          />
-        </Link>
+        <SideNavLink
+          currentPage={location.pathname}
+          iconType="user"
+          to="/account"
+        />
       </div>
     </div>
   );
