@@ -3,7 +3,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import IconButton from "../../components/IconButton/IconButton";
 import { GenerateTournament } from "../../services/TournamentBuilderService";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./CreateBracketPage.css";
 import TextButton from "../../components/TextButton/TextButton";
 
@@ -125,7 +125,7 @@ function CreateBracketPage({ saveNewBracket }) {
     <div className="create-page-root">
       <div className="create-page-form-container">
         <div className="create-page-form-field-container">
-          <p>Tournament name</p>
+          <p>Bracket name</p>
           {showTournamentNameValidationError ? (
             <span className="required-field-text">Required field</span>
           ) : null}

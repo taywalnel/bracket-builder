@@ -1,0 +1,16 @@
+.saved-bracket-item-root {
+  display: flex;
+  gap: 10px;
+  color: white;
+  padding: 10px;
+}
+
+.saved-bracket-item-root:hover {
+  background-color: #38bdff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.saved-bracket-item-column {
+  flex-basis: 100%;
+}
