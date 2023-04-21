@@ -1,11 +1,27 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "./ViewBracketPage.css";
 import BracketRound from "../../components/BracketRound/BracketRound";
 
 function ViewBracketPage({ brackets, setBrackets }) {
+  const navigate = useNavigate();
   const { id } = useParams();
   const currentTournament = brackets.find((b) => b.id === id);
+
+  const bracketRounds = currentTournament?.bracket.map((round, index) => (
+    <BracketRound
+      key={`round-${index}`}
+      round={round}
+      selectWinner={selectWinnerHandler}
+      index={index}
+    />
+  ));
+
+  useEffect(() => {
+    if (!currentTournament) {
+      navigate("/create");
+    }
+  }, [currentTournament, navigate]);
 
   function selectWinnerHandler(matchupResult) {
     updateBracketAfterWinnerSelected(matchupResult);
@@ -18,7 +34,7 @@ function ViewBracketPage({ brackets, setBrackets }) {
   }
 
   function updateMatchup(matchupResult) {
-    currentTournament.bracket[matchupResult.roundIndex].map((matchup) => {
+    currentTournament.bracket[matchupResult.roundIndex]?.find((matchup) => {
       if (matchup.id === matchupResult.matchupId) {
         matchup.winner = matchupResult.winner;
       }
@@ -26,18 +42,26 @@ function ViewBracketPage({ brackets, setBrackets }) {
   }
 
   function moveWinnerToNextRound(matchupResult) {
-    const currentRound = currentTournament.bracket[matchupResult.roundIndex];
-    const nextRound = currentTournament.bracket[matchupResult.roundIndex + 1];
-    if (!nextRound) return;
+    const { roundIndex, matchupId, winner } = matchupResult;
+    const currentRound = currentTournament.bracket[roundIndex];
+    const nextRound = currentTournament.bracket[roundIndex + 1];
+    if (!nextRound) {
+      setTournamentStatusToComplete();
+      return;
+    }
 
     const indexOfUpdatedMatchup = currentRound.findIndex(
-      (matchup) => matchup.id === matchupResult.matchupId
+      (matchup) => matchup.id === matchupId
     );
     const indexOfMatchupToMovePlayerTo = Math.floor(indexOfUpdatedMatchup / 2);
     const playerToUpdateInNextRound =
       indexOfUpdatedMatchup % 2 === 0 ? "player1" : "player2";
-    nextRound[indexOfMatchupToMovePlayerTo][playerToUpdateInNextRound] =
-      matchupResult.winner;
+    nextRound[indexOfMatchupToMovePlayerTo][playerToUpdateInNextRound] = winner;
+  }
+
+  function setTournamentStatusToComplete() {
+    currentTournament.status = "complete";
+    updateTournament(currentTournament);
   }
 
   function updateTournament(updatedTournament) {
@@ -48,49 +72,27 @@ function ViewBracketPage({ brackets, setBrackets }) {
     setBrackets(updatedTournaments);
   }
 
-  return currentTournament ? (
+  if (!currentTournament) {
+    return null;
+  }
+
+  return (
     <div className="view-page-root">
       <div className="needs-name">
-        <h2 style={{ color: "white", flexBasis: "20px" }}>
-          {currentTournament.title}
-        </h2>
-
-        <div
-          style={{
-            overflow: "auto",
-            display: "flex",
-            flexDirection: "column",
-            gap: "20px",
-          }}
-        >
+        <h2 className="view-page-header">{currentTournament.title}</h2>
+        <div className="view-page-bracket-container">
           <div className="view-page-round-labels">
             {currentTournament.bracket.map((round, index) => (
-              <p
-                key={index}
-                style={{
-                  display: "inline-block",
-                  width: "200px",
-                  flexShrink: "0",
-                }}
-              >
+              <div className="view-page-round-label" key={index}>
                 Round {index + 1}
-              </p>
+              </div>
             ))}
           </div>
-          <div className="view-page-root2">
-            {currentTournament.bracket.map((round, index) => (
-              <BracketRound
-                key={index}
-                round={round}
-                selectWinner={selectWinnerHandler}
-                index={index}
-              />
-            ))}
-          </div>
+          <div className="view-page-bracket">{bracketRounds}</div>
         </div>
       </div>
     </div>
-  ) : null;
+  );
 }
 
 export default ViewBracketPage;

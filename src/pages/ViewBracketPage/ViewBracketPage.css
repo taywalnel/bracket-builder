@@ -16,7 +16,23 @@
   gap: 10px;
 }
 
-.view-page-root2 {
+.view-page-header {
+  color: white;
+  flex-basis: 20px;
+}
+
+.view-page-bracket-container {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.view-page-round-label {
+  flex-basis: 100%;
+}
+
+.view-page-bracket {
   flex-grow: 1;
   display: flex;
   gap: 20px;
