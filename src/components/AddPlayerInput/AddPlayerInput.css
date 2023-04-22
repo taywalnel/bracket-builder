@@ -1,0 +1,5 @@
+.create-page-add-player-input-container {
+  display: flex;
+  gap: 10px;
+  min-width: 200px;
+}

@@ -1,11 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import IconButton from "../../components/IconButton/IconButton";
 import { GenerateTournament } from "../../services/TournamentBuilderService";
 import { useNavigate } from "react-router-dom";
 import "./CreateBracketPage.css";
 import TextButton from "../../components/TextButton/TextButton";
+import AddPlayerInput from "../../components/AddPlayerInput/AddPlayerInput";
 
 function CreateBracketPage({ saveNewBracket }) {
   const [players, setPlayers] = useState([
@@ -18,6 +18,26 @@ function CreateBracketPage({ saveNewBracket }) {
   const [showPlayersValidationError, setPlayersValidationError] =
     useState(false);
   const navigate = useNavigate();
+
+  const bracketNameValidationErrorMessage =
+    showTournamentNameValidationError && (
+      <span className="required-field-text">Required field</span>
+    );
+
+  const playerNameValidationErrorMessage = showPlayersValidationError && (
+    <span className="required-field-text">Please add at least 2 players</span>
+  );
+
+  const playerInputs = players.map((player, index) => (
+    <AddPlayerInput
+      key={player.id}
+      index={index}
+      player={player}
+      disabled={players.length < 2}
+      removePlayer={removePlayer}
+      onPlayerInputChange={onPlayerInputChange}
+    />
+  ));
 
   function onPlayerInputChange(event, id) {
     if (isLastPlayer(id)) {
@@ -110,11 +130,7 @@ function CreateBracketPage({ saveNewBracket }) {
   }
 
   function atLeastTwoValidPlayers() {
-    let validPlayers = 0;
-    players.forEach((player) => {
-      if (player.name) validPlayers += 1;
-    });
-    return validPlayers > 1;
+    return players.filter((player) => player.name).length > 1;
   }
 
   function navigateToViewNewBracket(id) {
@@ -123,65 +139,49 @@ function CreateBracketPage({ saveNewBracket }) {
 
   return (
     <div className="create-page-root">
+      <h2 className="create-page-header">Create bracket</h2>
       <div className="create-page-form-container">
-        <div className="create-page-form-field-container">
-          <p>Bracket name</p>
-          {showTournamentNameValidationError ? (
-            <span className="required-field-text">Required field</span>
-          ) : null}
-          <input onChange={updateTournamentName} name="name"></input>
+        <div className="create-page-field-wrapper">
+          <div className="create-page-label-wrapper">
+            <label htmlFor="name">Bracket name</label>
+            {bracketNameValidationErrorMessage}
+          </div>
+
+          <input required onChange={updateTournamentName} name="name" />
         </div>
-        <div className="create-page-form-field-container">
-          <p>Rank players by</p>
-          <select onChange={updateRankBy} name="ranking">
+
+        <div className="create-page-field-wrapper">
+          <div className="create-page-label-wrapper">
+            <label htmlFor="rank-by">Rank players by</label>
+          </div>
+          <select required onChange={updateRankBy} name="rank-by">
             <option>Order entered</option>
             <option>Randomize</option>
           </select>
         </div>
-        <div className="create-page-form-field-container">
-          <div>
-            <span style={{ paddingRight: "10px" }}>Players</span>
+        <div className="create-page-field-wrapper flex-1">
+          <div className="create-page-label-wrapper">
+            <label htmlFor="players">Players</label>
             <div className="create-page-player-count">
               {players.filter((p) => !!p.name).length}
             </div>
+            {playerNameValidationErrorMessage}
           </div>
-
-          {showPlayersValidationError ? (
-            <span className="required-field-text">
-              Please add at least 2 players
-            </span>
-          ) : null}
-          <div className="create-page-add-players-input-container">
-            {players.map((player, index) => (
-              <div
-                className="create-page-add-player-input-container"
-                key={player.id}
-              >
-                <input
-                  value={player.name}
-                  placeholder={`Player ${index + 1}`}
-                  onChange={(event) => onPlayerInputChange(event, player.id)}
-                  style={{ flex: 1 }}
-                ></input>
-
-                <IconButton
-                  clickHandler={() => removePlayer(player.id)}
-                  iconType="delete"
-                  diameter="40"
-                  disabled={players.length < 2}
-                  backgroundColor="#FF622B"
-                />
+          <div className="create-page-players-input-wrapper1">
+            <div className="create-page-players-input-wrapper2">
+              <div className="create-page-players-input-wrapper3">
+                {playerInputs}
               </div>
-            ))}
+            </div>
           </div>
         </div>
+        <TextButton
+          buttonText="Generate"
+          width="100%"
+          clickHandler={generateBracketHandler}
+          backgroundColor="#6BFF8E"
+        />
       </div>
-      <TextButton
-        buttonText="Generate"
-        width="100%"
-        clickHandler={generateBracketHandler}
-        backgroundColor="#6BFF8E"
-      />
     </div>
   );
 }

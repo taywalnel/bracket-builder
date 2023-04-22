@@ -3,8 +3,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 40px;
+  gap: 10px;
   padding: 40px;
   box-sizing: border-box;
   background-color: #181818;
@@ -12,17 +11,32 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.create-page-header {
+  color: white;
+}
+
 .create-page-form-container {
   color: white;
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 30px;
 }
 
-.create-page-form-field-container {
+.create-page-field-wrapper {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.create-page-label-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.flex-1 {
+  flex: 1;
 }
 
 .create-page-player-count {
@@ -35,8 +49,20 @@
   border-radius: 100%;
 }
 
-.create-page-add-players-input-container {
-  max-height: 170px;
+.create-page-players-input-wrapper1 {
+  flex: 1;
+  position: relative;
+}
+
+.create-page-players-input-wrapper2 {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.create-page-players-input-wrapper3 {
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   align-content: start;
@@ -44,12 +70,6 @@
   overflow: auto;
   background-color: #333;
   border-radius: 20px;
-}
-
-.create-page-add-player-input-container {
-  display: flex;
-  gap: 10px;
-  min-width: 200px;
 }
 
 .required-field-text {

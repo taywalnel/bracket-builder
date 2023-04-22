@@ -9,8 +9,10 @@ function SavedBracketsPage({ brackets }) {
       <h2 className="page-header">Saved brackets</h2>
       <div className="saved-page-list">
         <div className="saved-page-list-headers">
-          {headers.map((header) => (
-            <div className="saved-page-list-header">{header}</div>
+          {headers.map((header, index) => (
+            <div key={`header-${index}`} className="saved-page-list-header">
+              {header}
+            </div>
           ))}
         </div>
         <div className="saved-page-list-items-wrapper1">
