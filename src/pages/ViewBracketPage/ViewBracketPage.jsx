@@ -19,7 +19,7 @@ function ViewBracketPage({ brackets, setBrackets }) {
 
   useEffect(() => {
     if (!currentTournament) {
-      navigate("/create");
+      navigate("/");
     }
   }, [currentTournament, navigate]);
 

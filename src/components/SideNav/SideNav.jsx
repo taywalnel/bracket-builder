@@ -14,11 +14,7 @@ function SideNav() {
   return (
     <div className="side-nav-container">
       <div className="side-nav-links">
-        <SideNavLink
-          currentPage={location.pathname}
-          iconType="plus"
-          to="/create"
-        />
+        <SideNavLink currentPage={location.pathname} iconType="plus" to="/" />
         <SideNavLink
           currentPage={location.pathname}
           iconType="files"

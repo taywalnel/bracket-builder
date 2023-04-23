@@ -27,7 +27,7 @@ function App() {
           <div className="app-route-outlet">
             <Routes>
               <Route
-                path="/create"
+                path="/"
                 element={
                   <CreateBracketPage saveNewBracket={saveNewTournament} />
                 }
