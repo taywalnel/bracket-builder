@@ -1,0 +1,101 @@
+.sign-form-wrapper {
+  height: 500px;
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  color: white;
+  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.sign-form-top-section-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.sign-form-button-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.sign-form-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sign-form-type-button {
+  background-color: #4d4d4d;
+  color: white;
+}
+
+.sign-form-button {
+  height: 40px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  flex-basis: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.active-form-type-button {
+  background-color: #38bbff;
+  color: black;
+}
+
+.sign-form-field-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sign-form-back-button {
+  background-color: #4d4d4d;
+  color: white;
+}
+
+.sign-form-confirm-button {
+  background-color: #38bbff;
+}
+
+.sign-in-button {
+  border-radius: 20px 0 0 20px;
+}
+
+.sign-up-button {
+  border-radius: 0 20px 20px 0;
+}
+
+.sign-form-label-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.validation-error {
+  color: white;
+  font-size: 14px;
+  background-color: #4d4d4d;
+  padding: 0 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.firebase-error {
+  color: white;
+  font-size: 18px;
+  text-align: center;
+}
+
+.sign-form-bottom-section-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

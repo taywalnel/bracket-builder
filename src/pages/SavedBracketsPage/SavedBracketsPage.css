@@ -3,9 +3,9 @@
   width: 100%;
   padding: 40px;
   box-sizing: border-box;
-  background-color: #181818;
+  background-color: #333;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -39,7 +39,7 @@
   flex-direction: column;
   gap: 10px;
   position: relative;
-  background-color: #202020;
+  background-color: #4d4d4d;
 }
 
 .saved-page-list-items-wrapper2 {

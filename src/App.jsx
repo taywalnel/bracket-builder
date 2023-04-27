@@ -1,11 +1,13 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import CreateBracketPage from "./pages/CreateBracketPage/CreateBracketPage";
 import { useState } from "react";
 import ViewBracketPage from "./pages/ViewBracketPage/ViewBracketPage";
-import HeaderBar from "./components/HeaderBar/HeaderBar";
-import SideNav from "./components/SideNav/SideNav";
 import SavedBracketsPage from "./pages/SavedBracketsPage/SavedBracketsPage";
+import { AuthProvider } from "./contexts/AuthContext";
+import MainPageWrapper from "./components/MainPageWrapper/MainPageWrapper";
+import PrivateRoutes from "./components/PrivateRoute/PrivateRoute";
+import SignInPage from "./pages/SignInPage/SignInPage";
 
 function App() {
   const [brackets, setBrackets] = useState([]);
@@ -19,37 +21,41 @@ function App() {
   }
 
   return (
-    <div className="app-container">
-      <HeaderBar />
-      <div className="app-main-content-container">
-        <SideNav />
-        <div className="app-route-outlet-wrapper">
-          <div className="app-route-outlet">
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <CreateBracketPage saveNewBracket={saveNewTournament} />
-                }
-              ></Route>
-              <Route
-                path="/saved"
-                element={<SavedBracketsPage brackets={brackets} />}
-              ></Route>
-              <Route
-                path="/saved/:id"
-                element={
-                  <ViewBracketPage
-                    brackets={brackets}
-                    setBrackets={updateTournamentsHandler}
-                  />
-                }
-              ></Route>
-            </Routes>
-          </div>
-        </div>
-      </div>
-    </div>
+    <AuthProvider>
+      <Routes>
+        <Route path="/sign-in" element={<SignInPage />} />
+        <Route element={<PrivateRoutes />}>
+          <Route
+            path="/"
+            element={
+              <MainPageWrapper>
+                <CreateBracketPage saveNewBracket={saveNewTournament} />
+              </MainPageWrapper>
+            }
+          ></Route>
+          <Route
+            path="/saved"
+            element={
+              <MainPageWrapper>
+                <SavedBracketsPage brackets={brackets} />
+              </MainPageWrapper>
+            }
+          ></Route>
+          <Route
+            path="/saved/:id"
+            element={
+              <MainPageWrapper>
+                <ViewBracketPage
+                  brackets={brackets}
+                  setBrackets={updateTournamentsHandler}
+                />
+              </MainPageWrapper>
+            }
+          ></Route>
+        </Route>
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </AuthProvider>
   );
 }
 

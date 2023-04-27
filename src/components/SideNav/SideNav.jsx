@@ -21,13 +21,6 @@ function SideNav() {
           to="/saved"
         />
       </div>
-      <div className="side-nav-links">
-        <SideNavLink
-          currentPage={location.pathname}
-          iconType="user"
-          to="/account"
-        />
-      </div>
     </div>
   );
 }
