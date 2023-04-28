@@ -1,4 +1,4 @@
-.sign-form-wrapper {
+.sign-form__wrapper {
   height: 500px;
   width: 100%;
   max-width: 400px;
@@ -13,29 +13,29 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.sign-form-top-section-wrapper {
+.sign-form__top-section-wrapper {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
-.sign-form-button-wrapper {
+.sign-form__button-wrapper {
   display: flex;
   gap: 10px;
 }
 
-.sign-form-form-wrapper {
+.sign-form__form-wrapper {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.sign-form-type-button {
+.sign-form__type-button {
   background-color: #4d4d4d;
   color: white;
 }
 
-.sign-form-button {
+.sign-form__button {
   height: 40px;
   border: none;
   border-radius: 20px;
@@ -50,18 +50,18 @@
   color: black;
 }
 
-.sign-form-field-wrapper {
+.sign-form__field-wrapper {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.sign-form-back-button {
+.sign-form__back-button {
   background-color: #4d4d4d;
   color: white;
 }
 
-.sign-form-confirm-button {
+.sign-form__confirm-button {
   background-color: #38bbff;
 }
 
@@ -73,7 +73,7 @@
   border-radius: 0 20px 20px 0;
 }
 
-.sign-form-label-wrapper {
+.sign-form__label-wrapper {
   display: flex;
   gap: 10px;
   align-items: center;
@@ -94,7 +94,7 @@
   text-align: center;
 }
 
-.sign-form-bottom-section-wrapper {
+.sign-form__bottom-section-wrapper {
   display: flex;
   flex-direction: column;
   gap: 10px;

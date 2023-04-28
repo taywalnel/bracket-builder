@@ -1,5 +1,5 @@
+import MatchUpPlayer from "../MatchUpPlayer/MatchUpPlayer";
 import "./BracketMatchUp.css";
-import BracketPlayerRow from "../BracketPlayerRow/BracketPlayerRow";
 
 function BracketMatchUp({ matchup, selectWinner }) {
   function isWinner(player) {
@@ -21,13 +21,13 @@ function BracketMatchUp({ matchup, selectWinner }) {
 
   return (
     <div className="matchup-container">
-      <BracketPlayerRow
+      <MatchUpPlayer
         player={matchup.player1}
         isWinner={isWinner(matchup.player1)}
         selectWinner={selectWinnerHandler}
         allowSelectWinner={allowSelectWinner()}
       />
-      <BracketPlayerRow
+      <MatchUpPlayer
         player={matchup.player2}
         isWinner={isWinner(matchup.player2)}
         selectWinner={selectWinnerHandler}

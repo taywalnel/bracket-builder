@@ -1,5 +1,4 @@
 import React from "react";
-import IconButton from "../IconButton/IconButton";
 import "./AddPlayerInput.css";
 
 function AddPlayerInput({
@@ -17,14 +16,9 @@ function AddPlayerInput({
         onChange={(event) => onPlayerInputChange(event, player.id)}
         style={{ flex: 1 }}
       ></input>
-
-      <IconButton
-        clickHandler={() => removePlayer(player.id)}
-        iconType="delete"
-        diameter="40"
-        disabled={disabled}
-        backgroundColor="#FF622B"
-      />
+      <div className={`icon-wrapper add-player__icon-wrapper ${disabled ? 'disabled' : ''}`} onClick={() => removePlayer(player.id)}>
+        <img alt="delete icon" className="icon add-player__icon" src="/assets/delete.svg"></img>
+      </div>
     </div>
   );
 }

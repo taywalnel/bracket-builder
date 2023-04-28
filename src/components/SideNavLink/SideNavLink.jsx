@@ -1,21 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import IconButton from "../IconButton/IconButton";
 import "./SideNavLink.css";
 
 function SideNavLink({ currentPage, iconType, to }) {
   const isActivePage = currentPage === to;
   return (
-    <div className="side-nav-link-root">
+    <div className="side-nav-link__root">
       <Link className="react-link" to={to}>
-        <IconButton
-          iconType={iconType}
-          backgroundColor="rgb(56, 189, 255)"
-          diameter="45"
-        />
+        <div className="side-nav-link__icon-wrapper icon-wrapper">
+          <img className="side-nav-link__icon" src={`/assets/${iconType}.svg`} alt={`${iconType} icon`} />
+        </div>
       </Link>
       <div
-        className={`side-nav-link-active ${isActivePage ? "active-page" : ""}`}
+        className={`side-nav-link__active ${isActivePage ? "active-page" : ""}`}
       ></div>
     </div>
   );

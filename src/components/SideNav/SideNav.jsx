@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./SideNav.css";
-import SideNavLink from "../SideNavLink/SideNavLink";
 import { useLocation } from "react-router-dom";
+import SideNavLink from "../SideNavLink/SideNavLink";
+import "./SideNav.css";
 
 function SideNav() {
   const location = useLocation();
@@ -9,11 +9,11 @@ function SideNav() {
 
   useEffect(() => {
     setCount(count + 1);
-  }, [location]);
+  }, [count, location]);
 
   return (
-    <div className="side-nav-container">
-      <div className="side-nav-links">
+    <div className="side-nav__container">
+      <div className="side-nav__links">
         <SideNavLink currentPage={location.pathname} iconType="plus" to="/" />
         <SideNavLink
           currentPage={location.pathname}

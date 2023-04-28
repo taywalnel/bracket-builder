@@ -1,4 +1,4 @@
-.create-page-root {
+.create-page__root {
   height: 100%;
   width: 100%;
   display: flex;
@@ -11,11 +11,11 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.create-page-header {
+.create-page__header {
   color: white;
 }
 
-.create-page-form-container {
+.create-page__form-container {
   color: white;
   display: flex;
   flex: 1;
@@ -23,13 +23,13 @@
   gap: 30px;
 }
 
-.create-page-field-wrapper {
+.create-page__field-wrapper {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.create-page-label-wrapper {
+.create-page__label-wrapper {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -39,7 +39,7 @@
   flex: 1;
 }
 
-.create-page-player-count {
+.create-page__player-count {
   display: inline-grid;
   place-items: center;
   width: 27px;
@@ -49,19 +49,19 @@
   border-radius: 100%;
 }
 
-.create-page-players-input-wrapper1 {
+.create-page__players-input-wrapper1 {
   flex: 1;
   position: relative;
 }
 
-.create-page-players-input-wrapper2 {
+.create-page__players-input-wrapper2 {
   position: absolute;
   height: 100%;
   width: 100%;
   display: flex;
 }
 
-.create-page-players-input-wrapper3 {
+.create-page__players-input-wrapper3 {
   flex: 1;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -74,4 +74,13 @@
 
 .required-field-text {
   color: red;
+}
+
+.sign-page__generate-button {
+  width: 100%;
+  background-color: #6BFF8E;
+  height: 40px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
 }

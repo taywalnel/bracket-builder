@@ -1,15 +1,15 @@
-.app-container {
+.page-wrapper__container {
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
 
-.app-main-content-container {
+.page-wrapper__content-container {
   flex: 1;
   display: flex;
 }
 
-.app-route-outlet-wrapper {
+.page-wrapper__outlet-wrapper {
   flex: 1;
   display: grid;
   place-items: center;
@@ -17,7 +17,7 @@
   background-color: #252525;
 }
 
-.app-route-outlet {
+.page-wrapper__outlet {
   height: 100%;
   width: 100%;
   max-width: 1000px;

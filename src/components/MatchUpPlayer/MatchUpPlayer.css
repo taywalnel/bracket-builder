@@ -1,0 +1,42 @@
+.match-up-player__container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  height: 20px;
+  padding: 4px;
+  border-radius: 10px;
+  background-color: white;
+  cursor: default;
+}
+
+.match-up-player__details-container {
+  display: flex;
+  gap: 5px;
+}
+
+.match-up-player__button-container {
+  display: none;
+}
+
+.match-up-player__container.show-winner-button:hover,
+.match-up-player__container.is-winner {
+  background-color: #60e85636;
+}
+
+.match-up-player__container.show-winner-button:hover {
+  cursor: pointer;
+}
+
+.match-up-player__container.show-winner-button:hover
+  .match-up-player__button-container {
+  display: block;
+}
+
+.match-up-player__container.is-winner .match-up-player__button-container {
+  display: block;
+}
+
+.match-up-player__winner-identifier {
+  width: 20px;
+  height: 20px;
+}

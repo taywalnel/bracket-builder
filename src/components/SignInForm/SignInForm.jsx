@@ -1,8 +1,8 @@
-import React, { useState, createRef } from "react";
+import React, { createRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { firebaseErrorConstants } from "../../constants/firebaseErrorConstants";
 import { useAuth } from "../../contexts/AuthContext";
 import "./SignInForm.css";
-import { firebaseErrorConstants } from "../../constants/firebaseErrorConstants";
-import { useNavigate } from "react-router-dom";
 
 function SignInForm({ setShowSignInForm }) {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -19,8 +19,8 @@ function SignInForm({ setShowSignInForm }) {
   const navigate = useNavigate();
 
   const confirmPasswordElement = (
-    <div className="sign-form-field-wrapper">
-      <div className="sign-form-label-wrapper">
+    <div className="sign-form__field-wrapper">
+      <div className="sign-form__label-wrapper">
         <label htmlFor="confirm-password">Confirm password</label>
         <span className="validation-error">
           {passwordMismatchError || confirmPasswordError}
@@ -160,12 +160,12 @@ function SignInForm({ setShowSignInForm }) {
   }
 
   return (
-    <div className="sign-form-wrapper">
-      <div className="sign-form-top-section-wrapper">
-        <div className="sign-form-button-wrapper">
+    <div className="sign-form__wrapper">
+      <div className="sign-form__top-section-wrapper">
+        <div className="sign-form__button-wrapper">
           <button
             onClick={() => changeSignType("sign-in")}
-            className={`sign-form-button sign-form-type-button sign-in-button ${
+            className={`sign-form__button sign-form__type-button sign-in-button ${
               isSignIn ? "active-form-type-button" : ""
             }`}
           >
@@ -173,16 +173,16 @@ function SignInForm({ setShowSignInForm }) {
           </button>
           <button
             onClick={() => changeSignType("sign-up")}
-            className={`sign-form-button sign-form-type-button sign-up-button ${
+            className={`sign-form__button sign-form__type-button sign-up-button ${
               !isSignIn ? "active-form-type-button" : ""
             }`}
           >
             Sign up
           </button>
         </div>
-        <div className="sign-form-form-wrapper">
-          <div className="sign-form-field-wrapper">
-            <div className="sign-form-label-wrapper">
+        <div className="sign-form__form-wrapper">
+          <div className="sign-form__field-wrapper">
+            <div className="sign-form__label-wrapper">
               <label htmlFor="email">Email</label>
               <span className="validation-error">{emailError}</span>
             </div>
@@ -194,8 +194,8 @@ function SignInForm({ setShowSignInForm }) {
               name="email"
             />
           </div>
-          <div className="sign-form-field-wrapper">
-            <div className="sign-form-label-wrapper">
+          <div className="sign-form__field-wrapper">
+            <div className="sign-form__label-wrapper">
               <label htmlFor="password">Password</label>
               <span className="validation-error">
                 {passwordMismatchError || passwordError}
@@ -212,18 +212,18 @@ function SignInForm({ setShowSignInForm }) {
           {isSignIn ? null : confirmPasswordElement}
         </div>
       </div>
-      <div className="sign-form-bottom-section-wrapper">
+      <div className="sign-form__bottom-section-wrapper">
         <div className="firebase-error">{firebaseError}</div>
-        <div className="sign-form-button-wrapper">
+        <div className="sign-form__button-wrapper">
           <button
             onClick={onBackButtonClick}
-            className="sign-form-button sign-form-back-button"
+            className="sign-form__button sign-form__back-button"
           >
             Back
           </button>
           <button
             onClick={isSignIn ? handleSignIn : handleSignUp}
-            className="sign-form-button sign-form-confirm-button"
+            className="sign-form__button sign-form__confirm-button"
           >
             {isSignIn ? "Sign in" : "Sign up"}
           </button>

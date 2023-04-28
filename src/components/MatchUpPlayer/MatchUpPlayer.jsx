@@ -1,7 +1,7 @@
 import React from "react";
-import "./BracketPlayerRow.css";
+import "./MatchUpPlayer.css";
 
-function BracketPlayerRow({
+function MatchUpPlayer({
   player,
   isWinner,
   selectWinner,
@@ -16,17 +16,17 @@ function BracketPlayerRow({
   return (
     <div
       onClick={selectWinnerHandler}
-      className={`matchup-player-container ${isWinner ? "is-winner" : ""} ${
+      className={`match-up-player__container ${isWinner ? "is-winner" : ""} ${
         allowSelectWinner ? "show-winner-button" : ""
       }`}
     >
-      <div className="matchup-player-details-container">
+      <div className="match-up-player__details-container">
         <p style={{ color: "grey" }}>{player.rank}</p>
         <p style={{ color: player.isBye ? "grey" : "black" }}>{player.name}</p>
       </div>
-      <div className="matchup-player-won-button-container">
+      <div className="match-up-player__button-container">
         <img
-          className="matchup-player-winner-identifier"
+          className="match-up-player__winner-identifier"
           alt="tick-icon"
           src="/assets/tick.svg"
         ></img>
@@ -35,4 +35,4 @@ function BracketPlayerRow({
   );
 }
 
-export default BracketPlayerRow;
+export default MatchUpPlayer;

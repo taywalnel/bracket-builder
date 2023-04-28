@@ -1,4 +1,4 @@
-.view-page-root {
+.view-page__root {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -9,36 +9,36 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.needs-name {
+.view-page__wrapper {
   display: flex;
   flex-direction: column;
   height: 100%;
   gap: 10px;
 }
 
-.view-page-header {
+.view-page__header {
   color: white;
   flex-basis: 20px;
 }
 
-.view-page-bracket-container {
+.view-page__bracket-container {
   overflow: auto;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.view-page-round-label {
+.view-page__round-label {
   flex-basis: 100%;
 }
 
-.view-page-bracket {
+.view-page__bracket {
   flex-grow: 1;
   display: flex;
   gap: 20px;
 }
 
-.view-page-round-labels {
+.view-page__round-labels {
   display: flex;
   width: 100%;
   gap: 20px;

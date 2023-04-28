@@ -1,11 +1,9 @@
-import React from "react";
-import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import { GenerateTournament } from "../../services/TournamentBuilderService";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./CreateBracketPage.css";
-import TextButton from "../../components/TextButton/TextButton";
+import { v4 as uuidv4 } from "uuid";
 import AddPlayerInput from "../../components/AddPlayerInput/AddPlayerInput";
+import { GenerateTournament } from "../../services/TournamentBuilderService";
+import "./CreateBracketPage.css";
 
 function CreateBracketPage({ saveNewBracket }) {
   const [players, setPlayers] = useState([
@@ -138,11 +136,11 @@ function CreateBracketPage({ saveNewBracket }) {
   }
 
   return (
-    <div className="create-page-root">
-      <h2 className="create-page-header">Create bracket</h2>
-      <div className="create-page-form-container">
-        <div className="create-page-field-wrapper">
-          <div className="create-page-label-wrapper">
+    <div className="create-page__root">
+      <h2 className="create-page__header">Create bracket</h2>
+      <div className="create-page__form-container">
+        <div className="create-page__field-wrapper">
+          <div className="create-page__label-wrapper">
             <label htmlFor="name">Bracket name</label>
             {bracketNameValidationErrorMessage}
           </div>
@@ -150,8 +148,8 @@ function CreateBracketPage({ saveNewBracket }) {
           <input required onChange={updateTournamentName} name="name" />
         </div>
 
-        <div className="create-page-field-wrapper">
-          <div className="create-page-label-wrapper">
+        <div className="create-page__field-wrapper">
+          <div className="create-page__label-wrapper">
             <label htmlFor="rank-by">Rank players by</label>
           </div>
           <select required onChange={updateRankBy} name="rank-by">
@@ -159,28 +157,25 @@ function CreateBracketPage({ saveNewBracket }) {
             <option>Randomize</option>
           </select>
         </div>
-        <div className="create-page-field-wrapper flex-1">
-          <div className="create-page-label-wrapper">
+        <div className="create-page__field-wrapper flex-1">
+          <div className="create-page__label-wrapper">
             <label htmlFor="players">Players</label>
-            <div className="create-page-player-count">
+            <div className="create-page__player-count">
               {players.filter((p) => !!p.name).length}
             </div>
             {playerNameValidationErrorMessage}
           </div>
-          <div className="create-page-players-input-wrapper1">
-            <div className="create-page-players-input-wrapper2">
-              <div className="create-page-players-input-wrapper3">
+          <div className="create-page__players-input-wrapper1">
+            <div className="create-page__players-input-wrapper2">
+              <div className="create-page__players-input-wrapper3">
                 {playerInputs}
               </div>
             </div>
           </div>
         </div>
-        <TextButton
-          buttonText="Generate"
-          width="100%"
-          clickHandler={generateBracketHandler}
-          backgroundColor="#6BFF8E"
-        />
+        <button onClick={generateBracketHandler} className="sign-page__generate-button">
+        Generate
+        </button>
       </div>
     </div>
   );

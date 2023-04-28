@@ -33,6 +33,11 @@ p {
   margin: 0;
 }
 
+button {
+  margin: unset;
+  border: none;
+}
+
 input,
 select {
   height: 40px;
@@ -59,4 +64,11 @@ select:focus-visible {
 
 .page-header {
   color: white;
+}
+
+.icon-wrapper {
+  display: grid;
+  place-items: center;
+  box-shadow: #00000059 0px 5px 15px;
+  border-radius: 100%;
 }

@@ -3,3 +3,20 @@
   gap: 10px;
   min-width: 200px;
 }
+
+.add-player__icon-wrapper {
+  width: 40px;
+  height: 40px;
+  background-color: #ff622b;
+  transition: transform 0.3s ease-in-out;
+}
+
+.add-player__icon {
+  width: 20px;
+  height: 20px;
+}
+
+.add-player__icon-wrapper.disabled {
+  background-color: grey !important;
+  transform: scale(0.8);
+}

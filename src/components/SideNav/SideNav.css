@@ -1,4 +1,4 @@
-.side-nav-container {
+.side-nav__container {
   padding: 26px 10px;
   box-sizing: border-box;
   height: 100%;
@@ -8,7 +8,7 @@
   justify-content: space-between;
 }
 
-.side-nav-links {
+.side-nav__links {
   display: flex;
   flex-direction: column;
   gap: 10px;

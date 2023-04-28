@@ -5,12 +5,12 @@ import "./MainPageWrapper.css";
 
 function MainPageWrapper({ children }) {
   return (
-    <div className="app-container">
+    <div className="page-wrapper__container">
       <HeaderBar />
-      <div className="app-main-content-container">
+      <div className="page-wrapper__content-container">
         <SideNav />
-        <div className="app-route-outlet-wrapper">
-          <div className="app-route-outlet">{children}</div>
+        <div className="page-wrapper__outlet-wrapper">
+          <div className="page-wrapper__outlet">{children}</div>
         </div>
       </div>
     </div>

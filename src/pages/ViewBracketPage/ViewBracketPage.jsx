@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import "./ViewBracketPage.css";
+import { useNavigate, useParams } from "react-router-dom";
 import BracketRound from "../../components/BracketRound/BracketRound";
+import "./ViewBracketPage.css";
 
 function ViewBracketPage({ brackets, setBrackets }) {
   const navigate = useNavigate();
@@ -77,18 +77,18 @@ function ViewBracketPage({ brackets, setBrackets }) {
   }
 
   return (
-    <div className="view-page-root">
-      <div className="needs-name">
-        <h2 className="view-page-header">{currentTournament.title}</h2>
-        <div className="view-page-bracket-container">
-          <div className="view-page-round-labels">
+    <div className="view-page__root">
+      <div className="view-page__wrapper">
+        <h2 className="view-page__header">{currentTournament.title}</h2>
+        <div className="view-page__bracket-container">
+          <div className="view-page__round-labels">
             {currentTournament.bracket.map((round, index) => (
-              <div className="view-page-round-label" key={index}>
+              <div className="view-page__round-label" key={index}>
                 Round {index + 1}
               </div>
             ))}
           </div>
-          <div className="view-page-bracket">{bracketRounds}</div>
+          <div className="view-page__bracket">{bracketRounds}</div>
         </div>
       </div>
     </div>

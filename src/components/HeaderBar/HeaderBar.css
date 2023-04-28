@@ -1,4 +1,4 @@
-.header-bar-container {
+.header-bar__container {
   height: 60px;
   width: 100%;
   background-color: #38bbff;
@@ -21,11 +21,7 @@
 }
 
 .header-bar__icon-wrapper {
-  display: grid;
-  place-items: center;
   background-color: #252525;
   width: 45px;
   height: 45px;
-  border-radius: 100%;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }

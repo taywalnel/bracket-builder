@@ -1,10 +1,10 @@
-.side-nav-link-root {
+.side-nav-link__root {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.side-nav-link-active {
+.side-nav-link__active {
   position: absolute;
   width: 6px;
   height: 6px;
@@ -13,6 +13,17 @@
   left: 75px;
 }
 
-.side-nav-link-active.active-page {
+.side-nav-link__active.active-page {
   background-color: white;
+}
+
+.side-nav-link__icon-wrapper {
+  height: 45px;
+  width: 45px;
+  background-color: #38bdff
+}
+
+.side-nav-link__icon {
+  width: 24px;
+  height: 24px;
 }
