@@ -64,7 +64,7 @@
 .create-page__players-input-wrapper3 {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   align-content: start;
   gap: 10px;
   overflow: auto;
@@ -78,7 +78,7 @@
 
 .sign-page__generate-button {
   width: 100%;
-  background-color: #6BFF8E;
+  background-color: #45ff71;
   height: 40px;
   border-radius: 20px;
   font-size: 16px;

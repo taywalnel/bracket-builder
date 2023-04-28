@@ -50,7 +50,7 @@ function SignInPage() {
     <div className="sign-in-page__root">
       <div className="sign-in-page__container">
         <div className="sign-in-page__content-container">
-          <h1>Bracket builder</h1>
+          <h1 className="sign-in-page__header">Bracket builder</h1>
           {showSignInForm ? (
             <SignInForm setShowSignInForm={setShowSignInForm} />
           ) : (

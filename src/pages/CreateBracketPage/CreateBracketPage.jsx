@@ -75,6 +75,7 @@ function CreateBracketPage({ saveNewBracket }) {
   }
 
   function removePlayer(id) {
+    if(players.length < 2) return;
     setPlayers((currentPlayers) => currentPlayers.filter((p) => p.id !== id));
   }
 

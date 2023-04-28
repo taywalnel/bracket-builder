@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;600;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;500;600;900&display=swap");
 
 body {
   margin: 0;
@@ -36,6 +36,7 @@ p {
 button {
   margin: unset;
   border: none;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 input,
@@ -47,6 +48,8 @@ select {
   border-radius: 20px;
   border: none;
   width: 100%;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 16px;
 }
 
 select {
@@ -58,10 +61,6 @@ select:focus-visible {
   outline: none;
 }
 
-.react-link {
-  text-decoration: none;
-}
-
 .page-header {
   color: white;
 }
@@ -71,4 +70,5 @@ select:focus-visible {
   place-items: center;
   box-shadow: #00000059 0px 5px 15px;
   border-radius: 100%;
+  cursor: pointer;
 }

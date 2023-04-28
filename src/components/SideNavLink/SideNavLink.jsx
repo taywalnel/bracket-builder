@@ -6,7 +6,7 @@ function SideNavLink({ currentPage, iconType, to }) {
   const isActivePage = currentPage === to;
   return (
     <div className="side-nav-link__root">
-      <Link className="react-link" to={to}>
+      <Link to={to}>
         <div className="side-nav-link__icon-wrapper icon-wrapper">
           <img className="side-nav-link__icon" src={`/assets/${iconType}.svg`} alt={`${iconType} icon`} />
         </div>
