@@ -21,8 +21,11 @@ function HeaderBar() {
       <div className="header-bar__header-wrapper">
         <h2 className="header-bar__header">Bracket builder</h2>
       </div>
-      <div onClick={handleSignOut} className="header-bar__icon-wrapper icon-wrapper">
-        <img alt="download icon" src="/assets/download.svg"></img>
+      <div
+        onClick={handleSignOut}
+        className="header-bar__icon-wrapper icon-wrapper"
+      >
+        <img alt="download icon" src="/assets/logout.svg"></img>
       </div>
     </div>
   );

@@ -26,7 +26,7 @@ export function AuthProvider({ children }) {
   }
 
   function signInAsGuest() {
-    auth.signInAnonymously();
+    return auth.signInAnonymously();
   }
 
   useEffect(() => {
