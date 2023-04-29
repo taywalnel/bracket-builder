@@ -1,233 +1,238 @@
-import React, { createRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { firebaseErrorConstants } from "../../constants/firebaseErrorConstants";
-import { useAuth } from "../../contexts/AuthContext";
+import React, { useState, createRef } from "react";
 import "./SignInForm.css";
+import { useAuth } from "../../contexts/AuthContext";
+import { firebaseErrorConstants } from "../../constants/firebaseErrorConstants";
+import LoadingDots from "../LoadingDots/LoadingDots";
 
-function SignInForm({ setShowSignInForm }) {
-  const [isSignIn, setIsSignIn] = useState(true);
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [confirmPasswordError, setConfirmPasswordError] = useState("");
-  const [passwordMismatchError, setPasswordMismatchError] = useState("");
-  const [loading, setLoading] = useState(false);
+function SignInForm() {
+  const { signUp, signIn, signInAsGuest } = useAuth();
+  const [signInType, setSignInType] = useState("sign-in");
+  const [validationErrors, setValidationErrors] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+    passwordMismatch: "",
+  });
   const [firebaseError, setFirebaseError] = useState("");
+  const [loading, setLoading] = useState("");
+
   const emailRef = createRef();
   const passwordRef = createRef();
   const confirmPasswordRef = createRef();
-  const { signUp, signIn } = useAuth();
-  const navigate = useNavigate();
 
-  const confirmPasswordElement = (
-    <div className="sign-form__field-wrapper">
-      <div className="sign-form__label-wrapper">
-        <label htmlFor="confirm-password">Confirm password</label>
-        <span className="validation-error">
-          {passwordMismatchError || confirmPasswordError}
-        </span>
-      </div>
+  function handleSwitchSignType(type) {
+    if (signInType === type) return;
+    setSignInType(type);
+    setValidationErrors({
+      email: "",
+      password: "",
+      confirmPassword: "",
+      passwordMismatch: "",
+    });
+    setFirebaseError("");
+  }
 
-      <input
-        onClick={onConfirmPasswordInputChange}
-        ref={confirmPasswordRef}
-        type="password"
-        name="confirm-password"
-      />
-    </div>
-  );
-
-  async function handleSignIn() {
-    if (loading) return;
-    if (!fieldsAreValid()) return;
-
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
-
-    try {
-      setLoading(true);
-      await signIn(email, password);
-      navigate("/");
-    } catch (error) {
-      setFirebaseError(
-        firebaseErrorConstants[error.code] || "Failed to sign in"
-      );
+  function submitHandler() {
+    setFirebaseError("");
+    if (!formIsValid()) return;
+    if (signInType === "sign-up") {
+      handleSignUp();
     }
-    setLoading(false);
+    if (signInType === "sign-in") {
+      handleSignIn();
+    }
   }
 
   async function handleSignUp() {
-    if (loading) return;
-    if (!fieldsAreValid()) return;
-
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-
     try {
-      setLoading(true);
+      setLoading("sign-button");
       await signUp(email, password);
-      navigate("/");
     } catch (error) {
-      setFirebaseError(
-        firebaseErrorConstants[error.code] || "Failed to sign up"
-      );
+      setFirebaseError(firebaseErrorConstants[error.code]);
     }
-    setLoading(false);
+    setLoading("");
   }
 
-  function fieldsAreValid() {
-    let fieldsAreValid = true;
+  async function handleSignIn() {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-
-    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-      setEmailError("Invalid email");
-      fieldsAreValid = false;
+    try {
+      setLoading("sign-button");
+      await signIn(email, password);
+    } catch (error) {
+      setFirebaseError(firebaseErrorConstants[error.code]);
     }
-    if (!password) {
-      setPasswordError("Required");
-      fieldsAreValid = false;
-    }
+    setLoading("");
+  }
 
-    if (!isSignIn) {
-      const passwordConfirm = confirmPasswordRef.current.value;
-      if (!passwordConfirm) {
-        setConfirmPasswordError("Required");
-        fieldsAreValid = false;
+  async function handleSignInAsGuest() {
+    try {
+      setLoading("guest-button");
+      await signInAsGuest();
+    } catch (error) {
+      setFirebaseError(firebaseErrorConstants[error.code]);
+    }
+    setLoading("");
+  }
+
+  function formIsValid() {
+    let formIsValid = true;
+    const errors = {
+      email: "",
+      password: "",
+      confirmPassword: "",
+      passwordMismatch: "",
+    };
+
+    if (!emailRef.current.value) {
+      errors.email = "Required field";
+      formIsValid = false;
+    }
+    if (!emailIsFormattedCorrectly(emailRef.current.value)) {
+      errors.email = "Invalid email";
+      formIsValid = false;
+    }
+    if (!passwordRef.current.value) {
+      errors.password = "Required field";
+      formIsValid = false;
+    }
+    if (signInType === "sign-up") {
+      if (!confirmPasswordRef.current.value) {
+        errors.confirmPassword = "Required field";
+        formIsValid = false;
       }
-      if (password !== passwordConfirm) {
-        setPasswordMismatchError("Passwords do not match");
-        fieldsAreValid = false;
+      if (passwordRef.current.value !== confirmPasswordRef.current.value) {
+        errors.passwordMismatch = "Passwords do not match";
+        formIsValid = false;
       }
     }
-    return fieldsAreValid;
+    setValidationErrors(errors);
+    return formIsValid;
   }
 
-  function changeSignType(type) {
-    const currentType = isSignIn ? "sign-in" : "sign-up";
-    if (currentType === type) return;
-    setIsSignIn(!isSignIn);
-    resetErrors();
-    clearInputFields();
+  function emailIsFormattedCorrectly(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   }
 
-  function clearInputFields() {
-    emailRef.current.value = "";
-    passwordRef.current.value = "";
-    if (confirmPasswordRef.current) {
-      confirmPasswordRef.current.value = "";
-    }
+  function emailInputChange() {
+    if (validationErrors.email)
+      setValidationErrors({ ...validationErrors, email: "" });
   }
 
-  function resetErrors() {
-    setFirebaseError("");
-    setEmailError("");
-    setPasswordError("");
-    setConfirmPasswordError("");
-    setPasswordMismatchError("");
+  function passwordInputChange() {
+    if (validationErrors.password)
+      setValidationErrors({ ...validationErrors, password: "" });
   }
 
-  function onEmailInputChange() {
-    setFirebaseError("");
-    const email = emailRef.current.value;
-    if (email) {
-      setEmailError("");
-    }
-  }
-
-  function onPasswordInputChange() {
-    setFirebaseError("");
-    const password = passwordRef.current.value;
-    if (password) {
-      setPasswordError("");
-    }
-
-    setPasswordMismatchError("");
-  }
-
-  function onConfirmPasswordInputChange() {
-    setFirebaseError("");
-    const passwordConfirm = confirmPasswordRef.current.value;
-    if (passwordConfirm) {
-      setConfirmPasswordError("");
-    }
-    setPasswordMismatchError("");
-  }
-
-  function onBackButtonClick() {
-    resetErrors();
-    clearInputFields();
-    setShowSignInForm(false);
+  function confirmPasswordInputChange() {
+    if (validationErrors.confirmPassword)
+      setValidationErrors({ ...validationErrors, confirmPassword: "" });
+    if (validationErrors.passwordMismatch)
+      setValidationErrors({ ...validationErrors, passwordMismatch: "" });
   }
 
   return (
-    <div className="sign-form__wrapper">
-      <div className="sign-form__top-section-wrapper">
-        <div className="sign-form__button-wrapper">
+    <div className="sign-in__form-wrapper">
+      <div className="sign-in__form-inner-wrapper">
+        <div className="sign-in__title-wrapper">
+          <img src="/assets/trophy.svg" alt="title icon" />
+          <h3>bracket builder</h3>
+        </div>
+        <div className="sign-in__sign-in-buttons">
           <button
-            onClick={() => changeSignType("sign-in")}
-            className={`sign-form__button sign-form__type-button sign-in-button ${
-              isSignIn ? "active-form-type-button" : ""
+            onClick={() => handleSwitchSignType("sign-in")}
+            className={`sign-in-type-button ${
+              signInType === "sign-in" ? "selected-button" : ""
             }`}
           >
+            <div className="selected-icon__outline">
+              <div className="selected-icon__fill"></div>
+            </div>
             Sign in
           </button>
           <button
-            onClick={() => changeSignType("sign-up")}
-            className={`sign-form__button sign-form__type-button sign-up-button ${
-              !isSignIn ? "active-form-type-button" : ""
+            onClick={() => handleSwitchSignType("sign-up")}
+            className={`sign-in-type-button ${
+              signInType === "sign-up" ? "selected-button" : ""
             }`}
           >
+            <div className="selected-icon__outline">
+              <div className="selected-icon__fill"></div>
+            </div>
             Sign up
           </button>
         </div>
-        <div className="sign-form__form-wrapper">
-          <div className="sign-form__field-wrapper">
-            <div className="sign-form__label-wrapper">
-              <label htmlFor="email">Email</label>
-              <span className="validation-error">{emailError}</span>
-            </div>
-
-            <input
-              onChange={onEmailInputChange}
-              ref={emailRef}
-              type="text"
-              name="email"
-            />
-          </div>
-          <div className="sign-form__field-wrapper">
-            <div className="sign-form__label-wrapper">
-              <label htmlFor="password">Password</label>
-              <span className="validation-error">
-                {passwordMismatchError || passwordError}
-              </span>
-            </div>
-
-            <input
-              onChange={onPasswordInputChange}
-              ref={passwordRef}
-              type="password"
-              name="password"
-            />
-          </div>
-          {isSignIn ? null : confirmPasswordElement}
+        <div className="input-wrapper">
+          <label className="sign-in__label" htmlFor="email">
+            Email{" "}
+            <span className="sign-in__validation-error">
+              {validationErrors.email}
+            </span>
+          </label>
+          <input
+            onChange={emailInputChange}
+            ref={emailRef}
+            className="sign-in__input"
+            name="email"
+            type="text"
+          />
         </div>
-      </div>
-      <div className="sign-form__bottom-section-wrapper">
-        <div className="firebase-error">{firebaseError}</div>
-        <div className="sign-form__button-wrapper">
-          <button
-            onClick={onBackButtonClick}
-            className="sign-form__button sign-form__back-button"
-          >
-            Back
-          </button>
-          <button
-            onClick={isSignIn ? handleSignIn : handleSignUp}
-            className="sign-form__button sign-form__confirm-button"
-          >
-            {isSignIn ? "Sign in" : "Sign up"}
-          </button>
+        <div className="input-wrapper">
+          <label className="sign-in__label" htmlFor="password">
+            Password{" "}
+            <span className="sign-in__validation-error">
+              {validationErrors.password || validationErrors.passwordMismatch}
+            </span>
+          </label>
+          <input
+            onChange={passwordInputChange}
+            ref={passwordRef}
+            className="sign-in__input"
+            name="password"
+            type="password"
+          />
         </div>
+        <div
+          className={`input-wrapper ${
+            signInType === "sign-up"
+              ? "show-confirm-password"
+              : "hide-confirm-password"
+          }`}
+        >
+          <label className="sign-in__label" htmlFor="password">
+            Confirm password{" "}
+            <span className="sign-in__validation-error">
+              {validationErrors.confirmPassword ||
+                validationErrors.passwordMismatch}
+            </span>
+          </label>
+          <input
+            onChange={confirmPasswordInputChange}
+            ref={confirmPasswordRef}
+            className="sign-in__input"
+            name="password"
+            type="password"
+          />
+        </div>
+        <div className="sign-in__firebase-error">{firebaseError}</div>
+        <button onClick={submitHandler} className="submit-button">
+          {loading === "sign-button" ? <LoadingDots /> : "Sign in"}
+        </button>
+        <div className="sign-in__divider">
+          <div className="sign-in__divider-line"></div>
+          <span className="sign-in__divider-text">or</span>
+          <div className="sign-in__divider-line"></div>
+        </div>
+        <button onClick={handleSignInAsGuest} className="alternate-button">
+          {loading === "guest-button" ? (
+            <LoadingDots color="#333" />
+          ) : (
+            "Continue without signing in"
+          )}
+        </button>
       </div>
     </div>
   );

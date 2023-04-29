@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;500;600;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800&display=swap");
 
 body {
   margin: 0;
@@ -14,19 +14,25 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 h1 {
   margin: 0;
-  font-size: 36px;
-  font-weight: 300;
+  font-size: 40px;
+  font-weight: 800;
 }
 
 h2 {
   margin: 0;
   font-size: 26px;
-  font-weight: 300;
+  font-weight: 400;
+}
+
+h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
 }
 
 p {
@@ -36,7 +42,8 @@ p {
 button {
   margin: unset;
   border: none;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
 }
 
 input,
@@ -48,7 +55,7 @@ select {
   border-radius: 20px;
   border: none;
   width: 100%;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
 }
 
