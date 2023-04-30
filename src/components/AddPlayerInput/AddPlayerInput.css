@@ -1,12 +1,12 @@
 .create-page-add-player-input-container {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   min-width: 200px;
 }
 
 .add-player__icon-wrapper {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   background-color: #ff4200;
   transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
