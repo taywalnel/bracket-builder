@@ -40,7 +40,7 @@ button {
   width: 18px;
   height: 18px;
   border-radius: 100%;
-  border: 2px solid #ffffff80;
+  border: 1px solid #ffffff80;
   position: absolute;
   left: 5px;
   display: grid;
@@ -58,14 +58,14 @@ button {
 
 .selected-button {
   background-color: hsla(201, 100%, 61%, 0.15);
-  border: 2px solid #38bbff;
+  border: 1px solid #38bbff;
   color: white;
   transition: all 0.1s ease-in-out;
   padding: 1px 6px;
 }
 
 .selected-button .selected-icon__outline {
-  border: 2px solid #38bbff;
+  border: 1px solid #38bbff;
 }
 
 .selected-button .selected-icon__fill {
@@ -111,18 +111,18 @@ button {
 
 .sign-in__divider-line {
   flex: 1;
-  height: 2px;
+  height: 1px;
   background-color: #ffffff80;
 }
 
 .sign-in__divider-text {
-  font-weight: 800;
+  font-weight: 300;
   color: hsla(0, 0%, 100%, 0.75);
 }
 
 .sign-in__validation-error {
   color: red;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 14px;
 }
 

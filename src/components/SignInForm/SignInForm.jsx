@@ -34,7 +34,7 @@ function SignInForm() {
 
   function submitHandler() {
     setFirebaseError("");
-    if (!formIsValid()) return;
+    if (!determineIfFormValidAndSetErrors()) return;
     if (signInType === "sign-up") {
       handleSignUp();
     }
@@ -77,7 +77,7 @@ function SignInForm() {
     setLoading("");
   }
 
-  function formIsValid() {
+  function determineIfFormValidAndSetErrors() {
     let formIsValid = true;
     const errors = {
       email: "",
