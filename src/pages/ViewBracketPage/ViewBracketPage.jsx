@@ -8,6 +8,18 @@ function ViewBracketPage({ brackets, setBrackets }) {
   const { id } = useParams();
   const currentTournament = brackets.find((b) => b.id === id);
 
+  useEffect(() => {
+    if (!currentTournament) {
+      navigate("/");
+    }
+  }, [currentTournament, navigate]);
+
+  
+  if (!currentTournament) {
+    return null;
+  }
+  
+  const roundLabels = getRoundLabels();
   const bracketRounds = currentTournament?.bracket.map((round, index) => (
     <BracketRound
       key={`round-${index}`}
@@ -16,12 +28,6 @@ function ViewBracketPage({ brackets, setBrackets }) {
       index={index}
     />
   ));
-
-  useEffect(() => {
-    if (!currentTournament) {
-      navigate("/");
-    }
-  }, [currentTournament, navigate]);
 
   function selectWinnerHandler(matchupResult) {
     updateBracketAfterWinnerSelected(matchupResult);
@@ -72,8 +78,17 @@ function ViewBracketPage({ brackets, setBrackets }) {
     setBrackets(updatedTournaments);
   }
 
-  if (!currentTournament) {
-    return null;
+  function getRoundLabels(){
+    const namedRounds = ["Final", "Semifinals",  "Quarterfinals"];
+    const roundLabels = [];
+    const totalNumberOfRounds = currentTournament.bracket.length;
+    const numberOfRoundsToLabel = totalNumberOfRounds - 3;
+
+    for (let i = 0; i < numberOfRoundsToLabel; i++) {
+      roundLabels.push(`Round ${i + 1}`);
+    }
+    const namedRoundsToUse = namedRounds.slice(0, totalNumberOfRounds).reverse();
+    return [...roundLabels, ...namedRoundsToUse];
   }
 
   return (
@@ -82,9 +97,9 @@ function ViewBracketPage({ brackets, setBrackets }) {
         <h1 className="view-page__header">{currentTournament.title}</h1>
         <div className="view-page__bracket-container">
           <div className="view-page__round-labels">
-            {currentTournament.bracket.map((round, index) => (
-              <div className="view-page__round-label" key={index}>
-                Round {index + 1}
+            {roundLabels.map((roundLabel, index) => (
+              <div className="view-page__round-label" key={`round${index + 1}`}>
+                {roundLabel}
               </div>
             ))}
           </div>
