@@ -23,13 +23,13 @@
   display: flex;
   gap: 10px;
   align-items: center;
-  color: white;
   padding: 0 20px;
   box-sizing: border-box;
 }
 
 .saved-page__list-header {
   flex-basis: 100%;
+  color: #ffffffb3;
 }
 
 .saved-page__list-items-wrapper1 {

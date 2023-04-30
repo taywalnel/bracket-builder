@@ -14,9 +14,11 @@
 }
 
 .header-bar__header-wrapper {
+  display: flex;
+  gap: 10px;
   background-color: #333;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  padding: 3px 15px;
+  padding: 8px 15px;
   border-radius: 20px;
 }
 

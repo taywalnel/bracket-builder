@@ -79,7 +79,7 @@ function ViewBracketPage({ brackets, setBrackets }) {
   return (
     <div className="view-page__root">
       <div className="view-page__wrapper">
-        <h2 className="view-page__header">{currentTournament.title}</h2>
+        <h1 className="view-page__header">{currentTournament.title}</h1>
         <div className="view-page__bracket-container">
           <div className="view-page__round-labels">
             {currentTournament.bracket.map((round, index) => (

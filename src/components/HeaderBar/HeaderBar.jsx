@@ -19,7 +19,8 @@ function HeaderBar() {
   return (
     <div className="header-bar__container">
       <div className="header-bar__header-wrapper">
-        <h2 className="header-bar__header">Bracket builder</h2>
+        <img src="/assets/trophy.svg" alt="title icon" />
+        <h3 className="header-bar__header">bracket builder</h3>
       </div>
       <div
         onClick={handleSignOut}

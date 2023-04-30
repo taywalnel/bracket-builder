@@ -75,7 +75,7 @@ function CreateBracketPage({ saveNewBracket }) {
   }
 
   function removePlayer(id) {
-    if(players.length < 2) return;
+    if (players.length < 2) return;
     setPlayers((currentPlayers) => currentPlayers.filter((p) => p.id !== id));
   }
 
@@ -138,9 +138,9 @@ function CreateBracketPage({ saveNewBracket }) {
 
   return (
     <div className="create-page__root">
-      <h2 className="create-page__header">Create bracket</h2>
+      <h1 className="create-page__header">Create bracket</h1>
       <div className="create-page__form-container">
-        <div className="create-page__field-wrapper">
+        <div className="input-wrapper">
           <div className="create-page__label-wrapper">
             <label htmlFor="name">Bracket name</label>
             {bracketNameValidationErrorMessage}
@@ -149,7 +149,7 @@ function CreateBracketPage({ saveNewBracket }) {
           <input required onChange={updateTournamentName} name="name" />
         </div>
 
-        <div className="create-page__field-wrapper">
+        <div className="input-wrapper">
           <div className="create-page__label-wrapper">
             <label htmlFor="rank-by">Rank players by</label>
           </div>
@@ -158,7 +158,7 @@ function CreateBracketPage({ saveNewBracket }) {
             <option>Randomize</option>
           </select>
         </div>
-        <div className="create-page__field-wrapper flex-1">
+        <div className="input-wrapper flex-1">
           <div className="create-page__label-wrapper">
             <label htmlFor="players">Players</label>
             <div className="create-page__player-count">
@@ -174,8 +174,11 @@ function CreateBracketPage({ saveNewBracket }) {
             </div>
           </div>
         </div>
-        <button onClick={generateBracketHandler} className="sign-page__generate-button">
-        Generate
+        <button
+          onClick={generateBracketHandler}
+          className="sign-page__generate-button"
+        >
+          Generate
         </button>
       </div>
     </div>

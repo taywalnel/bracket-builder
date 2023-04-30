@@ -6,7 +6,7 @@ function SavedBracketsPage({ brackets }) {
   const headers = ["Title", "Created on", "Players", "Status"];
   return (
     <div className="saved-page__root ">
-      <h2 className="page-header">Saved brackets</h2>
+      <h1 className="page-header">Saved brackets</h1>
       <div className="saved-page__list">
         <div className="saved-page__list-headers">
           {headers.map((header, index) => (
