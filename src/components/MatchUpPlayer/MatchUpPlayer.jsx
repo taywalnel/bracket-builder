@@ -1,12 +1,7 @@
 import React from "react";
 import "./MatchUpPlayer.css";
 
-function MatchUpPlayer({
-  player,
-  isWinner,
-  selectWinner,
-  allowSelectWinner,
-}) {
+function MatchUpPlayer({ player, isWinner, selectWinner, allowSelectWinner }) {
   function selectWinnerHandler() {
     if (isWinner) return;
     if (!allowSelectWinner) return;
@@ -22,7 +17,12 @@ function MatchUpPlayer({
     >
       <div className="match-up-player__details-container">
         <p style={{ color: "grey" }}>{player.rank}</p>
-        <p style={{ color: player.isBye ? "grey" : "black" }}>{player.name}</p>
+        <p
+          className="match-up-player__name"
+          style={{ color: player.isBye ? "grey" : "black" }}
+        >
+          {player.name}
+        </p>
       </div>
       <div className="match-up-player__button-container">
         <img

@@ -1,12 +1,5 @@
 .view-page__root {
   position: absolute;
-  height: 100%;
-  width: 100%;
-  padding: 40px;
-  box-sizing: border-box;
-  background-color: #333;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .view-page__wrapper {
@@ -29,7 +22,8 @@
 }
 
 .view-page__round-label {
-  flex-basis: 100%;
+  flex-basis: 200px;
+  flex-shrink: 0;
 }
 
 .view-page__bracket {
@@ -43,4 +37,11 @@
   width: 100%;
   gap: 20px;
   color: white;
+}
+
+@media screen and (max-width: 600px) {
+  .view-page__round-label {
+    flex-basis: 150px;
+    flex-shrink: 0;
+  }
 }

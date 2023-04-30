@@ -77,7 +77,7 @@ function ViewBracketPage({ brackets, setBrackets }) {
   }
 
   return (
-    <div className="view-page__root">
+    <div className="view-page__root page__root">
       <div className="view-page__wrapper">
         <h1 className="view-page__header">{currentTournament.title}</h1>
         <div className="view-page__bracket-container">

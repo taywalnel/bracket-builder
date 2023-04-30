@@ -8,6 +8,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import MainPageWrapper from "./components/MainPageWrapper/MainPageWrapper";
 import PrivateRoutes from "./components/PrivateRoute/PrivateRoute";
 import SignInPage from "./pages/SignInPage/SignInPage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 function App() {
   const [brackets, setBrackets] = useState([]);
@@ -49,6 +50,14 @@ function App() {
                   brackets={brackets}
                   setBrackets={updateTournamentsHandler}
                 />
+              </MainPageWrapper>
+            }
+          ></Route>
+          <Route
+            path="/profile"
+            element={
+              <MainPageWrapper>
+                <ProfilePage />
               </MainPageWrapper>
             }
           ></Route>

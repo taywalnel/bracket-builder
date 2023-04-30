@@ -168,7 +168,7 @@ function SignInForm() {
         <div className="input-wrapper">
           <label className="sign-in__label" htmlFor="email">
             Email{" "}
-            <span className="sign-in__validation-error">
+            <span className="required-field-text">
               {validationErrors.email}
             </span>
           </label>
@@ -183,7 +183,7 @@ function SignInForm() {
         <div className="input-wrapper">
           <label className="sign-in__label" htmlFor="password">
             Password{" "}
-            <span className="sign-in__validation-error">
+            <span className="required-field-text">
               {validationErrors.password || validationErrors.passwordMismatch}
             </span>
           </label>
@@ -204,7 +204,7 @@ function SignInForm() {
         >
           <label className="sign-in__label" htmlFor="password">
             Confirm password{" "}
-            <span className="sign-in__validation-error">
+            <span className="required-field-text">
               {validationErrors.confirmPassword ||
                 validationErrors.passwordMismatch}
             </span>
@@ -218,7 +218,10 @@ function SignInForm() {
           />
         </div>
         <div className="sign-in__firebase-error">{firebaseError}</div>
-        <button onClick={submitHandler} className="submit-button">
+        <button
+          onClick={submitHandler}
+          className="submit-button sign-in__button"
+        >
           {loading === "sign-button" ? <LoadingDots /> : "Sign in"}
         </button>
         <div className="sign-in__divider">
@@ -226,11 +229,14 @@ function SignInForm() {
           <span className="sign-in__divider-text">or</span>
           <div className="sign-in__divider-line"></div>
         </div>
-        <button onClick={handleSignInAsGuest} className="alternate-button">
+        <button
+          onClick={handleSignInAsGuest}
+          className="alternate-button sign-in__button"
+        >
           {loading === "guest-button" ? (
             <LoadingDots color="#333" />
           ) : (
-            "Continue without signing in"
+            "Sign in as guest"
           )}
         </button>
       </div>

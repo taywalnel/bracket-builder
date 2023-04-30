@@ -1,16 +1,3 @@
-.create-page__root {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 40px;
-  box-sizing: border-box;
-  background-color: #333;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
 .create-page__header {
   color: white;
 }
@@ -65,7 +52,7 @@
 .create-page__players-input-wrapper3 {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   align-content: start;
   gap: 10px;
   overflow: auto;
@@ -73,13 +60,9 @@
   border-radius: 20px;
 }
 
-.required-field-text {
-  color: red;
-}
-
 .sign-page__generate-button {
   width: 100%;
-  background-color: #45ff71;
+  background-color: #38bbff;
   height: 40px;
   border: unset;
   border-radius: 20px;

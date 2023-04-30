@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 import SideNavLink from "../SideNavLink/SideNavLink";
 import "./SideNav.css";
 
 function SideNav() {
   const location = useLocation();
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    setCount(count + 1);
-  }, [count, location]);
 
   return (
     <div className="side-nav__container">
@@ -19,6 +14,11 @@ function SideNav() {
           currentPage={location.pathname}
           iconType="files"
           to="/saved"
+        />
+        <SideNavLink
+          currentPage={location.pathname}
+          iconType="profile"
+          to="/profile"
         />
       </div>
     </div>

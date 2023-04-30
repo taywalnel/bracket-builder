@@ -1,0 +1,17 @@
+.modal-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  place-items: center;
+}
+
+.modal {
+  width: 400px;
+  height: 400px;
+  background-color: #333;
+  border: 1px solid #38bbff;
+  border-radius: 20px;
+}

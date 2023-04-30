@@ -1,16 +1,3 @@
-.saved-page__root {
-  height: 100%;
-  width: 100%;
-  padding: 40px;
-  box-sizing: border-box;
-  background-color: #333;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
 .saved-page__list {
   flex: 1;
   display: flex;
@@ -53,4 +40,10 @@
   flex-direction: column;
   gap: 10px;
   padding: 10px;
+}
+
+@media (max-width: 600px) {
+  .saved-page__list-headers {
+    font-size: 12px;
+  }
 }

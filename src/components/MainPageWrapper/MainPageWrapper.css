@@ -25,3 +25,13 @@
   display: grid;
   place-items: center;
 }
+
+@media (max-width: 600px) {
+  .page-wrapper__content-container {
+    flex-direction: column;
+  }
+
+  .page-wrapper__outlet-wrapper {
+    padding: 20px;
+  }
+}

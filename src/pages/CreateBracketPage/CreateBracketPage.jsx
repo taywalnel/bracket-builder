@@ -137,7 +137,7 @@ function CreateBracketPage({ saveNewBracket }) {
   }
 
   return (
-    <div className="create-page__root">
+    <div className="page__root">
       <h1 className="create-page__header">Create bracket</h1>
       <div className="create-page__form-container">
         <div className="input-wrapper">
