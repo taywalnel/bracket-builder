@@ -7,6 +7,19 @@
 .page-wrapper__content-container {
   flex: 1;
   display: flex;
+  position: relative;
+}
+
+.hamburger-menu__wrapper {
+  position: absolute;
+  height: 100%;
+  background-color: #333;
+  transform: translate(-100%, 0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.hamburger-menu__wrapper.menu-open {
+  transform: translate(0, 0);
 }
 
 .page-wrapper__outlet-wrapper {
@@ -15,6 +28,10 @@
   place-items: center;
   padding: 40px;
   background-color: #252525;
+}
+
+.page-wrapper__side-nav-wrapper {
+  display: block;
 }
 
 .page-wrapper__outlet {
@@ -27,8 +44,8 @@
 }
 
 @media (max-width: 600px) {
-  .page-wrapper__content-container {
-    flex-direction: column;
+  .page-wrapper__side-nav-wrapper {
+    display: none;
   }
 
   .page-wrapper__outlet-wrapper {

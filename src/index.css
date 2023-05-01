@@ -52,7 +52,7 @@ button {
   padding: 2px 6px;
   display: grid;
   place-items: center;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 label {
@@ -91,29 +91,44 @@ select:focus-visible {
   box-shadow: #00000059 0px 5px 15px;
   border-radius: 100%;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  transform: scale(0.95);
 }
 
 img {
   pointer-events: none;
 }
 
-.icon-wrapper:hover {
-  transform: scale(1);
-  opacity: 0.8;
+.icon-hover-wrapper {
+  display: grid;
+  place-items: center;
+  background-color: transparent;
+  border-radius: 50%;
+  transition: background-color 0.3s ease-in-out;
+  padding: 4px;
 }
 
-.icon-wrapper:active {
-  transform: scale(1);
-  opacity: 0.8;
+.icon-hover-wrapper.icon-selected {
+  background-color: #38b9ff80;
+}
+
+.icon-hover-wrapper:hover {
+  background-color: #cccccc83;
+}
+
+
+.icon-hover-wrapper.icon-selected:hover {
+  background-color: #38b9ff80;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
 }
 
 .input-wrapper {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 16px;
 }
 

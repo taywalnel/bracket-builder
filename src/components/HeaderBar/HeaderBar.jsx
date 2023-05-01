@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import "./HeaderBar.css";
 
-function HeaderBar() {
+function HeaderBar({ isHamburgerMenuOpen, setIsHamburgerMenuOpen }) {
   const { signOut } = useAuth();
   const navigate = useNavigate();
 
@@ -16,6 +16,10 @@ function HeaderBar() {
     }
   }
 
+  function toggleHamburgerMenu() {
+    setIsHamburgerMenuOpen(!isHamburgerMenuOpen);
+  }
+
   return (
     <div className="header-bar__container">
       <div className="header-bar__header-wrapper">
@@ -24,9 +28,15 @@ function HeaderBar() {
       </div>
       <div
         onClick={handleSignOut}
-        className="header-bar__icon-wrapper icon-wrapper"
+        className="header-bar__sign-out-button icon-wrapper"
       >
-        <img alt="download icon" src="/assets/logout.svg"></img>
+        <img className="icon" alt="download icon" src="/assets/logout.svg"></img>
+      </div>
+      <div
+        onClick={toggleHamburgerMenu}
+        className={`header-bar__hamburger-button icon-wrapper`}
+      >
+        <img className={`icon  ${isHamburgerMenuOpen ? "menu-open" : ""}`} alt="menu icon" src="/assets/hamburger.svg"></img>
       </div>
     </div>
   );

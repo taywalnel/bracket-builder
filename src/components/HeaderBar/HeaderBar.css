@@ -22,8 +22,32 @@
   border-radius: 20px;
 }
 
-.header-bar__icon-wrapper {
+.header-bar__sign-out-button {
   background-color: #252525;
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
+}
+
+.header-bar__hamburger-button {
+  background-color: #252525;
+  width: 40px;
+  height: 40px;
+  display: none;
+}
+
+.header-bar__hamburger-button .icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.icon.menu-open {
+  transform: rotate(90deg);
+}
+
+@media (max-width: 600px) {
+  .header-bar__sign-out-button {
+    display: none;
+  }
+  .header-bar__hamburger-button {
+    display: grid;
+  }
 }

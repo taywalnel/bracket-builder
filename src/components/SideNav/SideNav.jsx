@@ -9,14 +9,14 @@ function SideNav() {
   return (
     <div className="side-nav__container">
       <div className="side-nav__links">
-        <SideNavLink currentPage={location.pathname} iconType="plus" to="/" />
+        <SideNavLink isCurrentPage={location.pathname === "/"} iconType="plus" to="/" />
         <SideNavLink
-          currentPage={location.pathname}
+          isCurrentPage={location.pathname === "/saved"}
           iconType="files"
           to="/saved"
         />
         <SideNavLink
-          currentPage={location.pathname}
+          isCurrentPage={location.pathname === "/profile"}
           iconType="profile"
           to="/profile"
         />
