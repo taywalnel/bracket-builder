@@ -5,7 +5,7 @@ import AddPlayerInput from "../../components/AddPlayerInput/AddPlayerInput";
 import { GenerateTournament } from "../../services/TournamentBuilderService";
 import "./CreateBracketPage.css";
 
-function CreateBracketPage({ saveNewBracket }) {
+function CreateBracketPage({ createNewBracket }) {
   const [players, setPlayers] = useState([
     { name: "", isBye: false, id: uuidv4() },
   ]);
@@ -84,7 +84,7 @@ function CreateBracketPage({ saveNewBracket }) {
     const updatedPlayers = removeBlankPlayers();
     const playersWithRanking = applyRankingToPlayers(updatedPlayers);
     const newBracket = GenerateTournament(tournamentName, playersWithRanking);
-    saveNewBracket(newBracket);
+    createNewBracket(newBracket);
     navigateToViewNewBracket(newBracket.id);
   }
 
