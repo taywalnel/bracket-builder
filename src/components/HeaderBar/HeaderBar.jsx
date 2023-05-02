@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import Hamburger from "hamburger-react";
 import "./HeaderBar.css";
 
 function HeaderBar({ isHamburgerMenuOpen, setIsHamburgerMenuOpen }) {
@@ -22,21 +23,35 @@ function HeaderBar({ isHamburgerMenuOpen, setIsHamburgerMenuOpen }) {
 
   return (
     <div className="header-bar__container">
-      <div className="header-bar__header-wrapper">
+      <div className="header-bar__header-wrapper no-user-select">
         <img src="/assets/trophy.svg" alt="title icon" />
         <h3 className="header-bar__header">bracket builder</h3>
       </div>
-      <div
-        onClick={handleSignOut}
-        className="header-bar__sign-out-button icon-wrapper"
-      >
-        <img className="icon" alt="download icon" src="/assets/logout.svg"></img>
+      <div className="icon-hover-wrapper header-bar__icon-hover-wrapper">
+        <div
+          onClick={handleSignOut}
+          className="header-bar__sign-out-button icon-wrapper"
+        >
+          <img
+            className="icon"
+            alt="download icon"
+            src="/assets/logout.svg"
+          ></img>
+        </div>
       </div>
+
       <div
         onClick={toggleHamburgerMenu}
         className={`header-bar__hamburger-button icon-wrapper`}
       >
-        <img className={`icon  ${isHamburgerMenuOpen ? "menu-open" : ""}`} alt="menu icon" src="/assets/hamburger.svg"></img>
+        <Hamburger
+          height={20}
+          width={20}
+          size={20}
+          color="#fff"
+          toggled={isHamburgerMenuOpen}
+          toggle={setIsHamburgerMenuOpen}
+        />
       </div>
     </div>
   );

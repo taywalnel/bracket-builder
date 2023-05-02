@@ -12,7 +12,6 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 function App() {
   const [brackets, setBrackets] = useState([]);
-
   function saveNewTournament(newBracket) {
     setBrackets((currentBrackets) => [...currentBrackets, newBracket]);
   }

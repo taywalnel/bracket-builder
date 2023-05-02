@@ -15,6 +15,12 @@ body {
   display: flex;
   flex-direction: column;
   font-family: "Inter", sans-serif;
+  overflow: hidden;
+}
+
+a:-webkit-any-link {
+  color: unset;
+  text-decoration: none;
 }
 
 h1 {
@@ -111,9 +117,8 @@ img {
 }
 
 .icon-hover-wrapper:hover {
-  background-color: #cccccc83;
+  background-color: #cccccc3d;
 }
-
 
 .icon-hover-wrapper.icon-selected:hover {
   background-color: #38b9ff80;
@@ -149,6 +154,13 @@ img {
   background-color: #333;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.no-user-select {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }
 
 @media (max-width: 600px) {
