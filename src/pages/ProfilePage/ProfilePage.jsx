@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import "./ProfilePage.css";
-import { useAuth } from "../../contexts/AuthContext";
-import LoadingDots from "../../components/LoadingDots/LoadingDots";
 import { format } from "date-fns";
+import React, { useState } from "react";
+import LoadingDots from "../../components/LoadingDots/LoadingDots";
+import ChangePasswordModal from "../../components/Modals/ChangePasswordModal/ChangePasswordModal";
+import DeleteAccountModal from "../../components/Modals/DeleteAccountModal/DeleteAccountModal";
+import { useAuth } from "../../contexts/AuthContext";
+import "./ProfilePage.css";
 
-function ProfilePage() {
+function ProfilePage({ setIsModalOpen, setModalContent }) {
   const { signOut, currentUser } = useAuth();
   const [loading, setLoading] = useState("");
   const [userEmailText] = useState(handleSetUserEmail());
@@ -28,8 +30,14 @@ function ProfilePage() {
     return formattedDate;
   }
 
-  function deleteAccount() {
-    // create warning modal
+  function openDeleteModal() {
+    setModalContent(<DeleteAccountModal closeModal={() => setIsModalOpen(false)}/>)
+    setIsModalOpen(true);
+  }
+
+  function openChangePasswordModal() {
+    setModalContent(<ChangePasswordModal closeModal={() => setIsModalOpen(false)}/>)
+    setIsModalOpen(true);
   }
 
   function handleSignOut() {
@@ -41,9 +49,7 @@ function ProfilePage() {
     }
     setLoading("");
   }
-  function changePassword() {
-    // open password change modal
-  }
+ 
   return (
     <div className="page__root">
       <h1>Profile</h1>
@@ -63,11 +69,10 @@ function ProfilePage() {
             <button onClick={handleSignOut}>
               {loading === "sign-out" ? <LoadingDots /> : "Sign out"}
             </button>
-            {currentUser.isAnonymous ? null : <button>Change password</button>}
+            {currentUser.isAnonymous ? null : <button onClick={openChangePasswordModal}>Change password</button>}
           </div>
-
           {currentUser.isAnonymous ? null : (
-            <button className="profile-page__delete-button">
+            <button onClick={openDeleteModal} className="profile-page__delete-button">
               Delete account
             </button>
           )}

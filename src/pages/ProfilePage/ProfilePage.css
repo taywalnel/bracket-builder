@@ -38,3 +38,9 @@ button {
 .profile-page__delete-button {
   background-color: #ff622b;
 }
+
+@media (max-width: 600px) {
+  .profile-page__actions-row {
+    flex-direction: column;
+  }
+}

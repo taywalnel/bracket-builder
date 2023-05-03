@@ -1,8 +1,8 @@
-import React, { useState, createRef } from "react";
-import "./SignInForm.css";
-import { useAuth } from "../../contexts/AuthContext";
+import React, { createRef, useState } from "react";
 import { firebaseErrorConstants } from "../../constants/firebaseErrorConstants";
+import { useAuth } from "../../contexts/AuthContext";
 import LoadingDots from "../LoadingDots/LoadingDots";
+import "./SignInForm.css";
 
 function SignInForm() {
   const { signUp, signIn, signInAsGuest } = useAuth();
@@ -217,7 +217,7 @@ function SignInForm() {
             type="password"
           />
         </div>
-        <div className="sign-in__firebase-error">{firebaseError}</div>
+        <div className="firebase-error">{firebaseError}</div>
         <button
           onClick={submitHandler}
           className="submit-button sign-in__button"

@@ -21,23 +21,23 @@ function App() {
   const updateBracketsHandler = (updatedBrackets) => {
     setBrackets(updatedBrackets);
   }
+  const [modalContent, setModalContent] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const createBracketPage = <CreateBracketPage createNewBracket={createNewBracket} />;
   const savedBracketsPage = <SavedBracketsPage brackets={brackets} />;
   const viewBracketsPage = <ViewBracketPage brackets={brackets}  setBrackets={updateBracketsHandler} />;
-  const profilePage = <ProfilePage />; 
+  const profilePage = <ProfilePage setIsModalOpen={setIsModalOpen} setModalContent={setModalContent} />; 
   
-  
-
   return (
     <AuthProvider>
       <Routes>
         <Route path="/sign-in" element={<SignInPage />} />
         <Route element={<PrivateRoutes />}>
-          <Route path="/" element={<MainPageWrapper>{createBracketPage}</MainPageWrapper>} />
-          <Route path="/saved" element={<MainPageWrapper>{savedBracketsPage}</MainPageWrapper>} />
-          <Route path="/saved/:id" element={<MainPageWrapper>{viewBracketsPage}</MainPageWrapper>} />
-          <Route path="/profile" element={<MainPageWrapper>{profilePage}</MainPageWrapper>} />
+          <Route path="/" element={<MainPageWrapper isModalOpen={isModalOpen}>{createBracketPage}</MainPageWrapper>} />
+          <Route path="/saved" element={<MainPageWrapper isModalOpen={isModalOpen}>{savedBracketsPage}</MainPageWrapper>} />
+          <Route path="/saved/:id" element={<MainPageWrapper isModalOpen={isModalOpen}>{viewBracketsPage}</MainPageWrapper>} />
+          <Route path="/profile" element={<MainPageWrapper isModalOpen={isModalOpen} modalContent={modalContent}>{profilePage}</MainPageWrapper>} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

@@ -61,6 +61,11 @@ button {
   font-weight: 400;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  background-color: #cccccc;
+}
+
 label {
   color: #ffffffb3;
 }
@@ -154,6 +159,14 @@ img {
   background-color: #333;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.firebase-error {
+  display: grid;
+  place-items: center;
+  height: 40px;
+  color: red;
+  text-align: center;
 }
 
 .no-user-select {

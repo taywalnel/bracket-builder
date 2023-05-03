@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
-import { auth } from "../firebase";
-import { useEffect } from "react";
 import firebase from "firebase/compat/app";
+import React, { useContext, useEffect, useState } from "react";
+import { auth } from "../firebase";
 
 export const AuthContext = React.createContext();
 
@@ -29,6 +28,14 @@ export function AuthProvider({ children }) {
     return auth.signInAnonymously();
   }
 
+  function deleteAccount() {
+    return currentUser.delete();
+  }
+
+  function changePassword(newPassword) {
+    return currentUser.updatePassword(newPassword);
+  }
+
   useEffect(() => {
     auth
       .setPersistence(firebase.auth.Auth.Persistence.SESSION)
@@ -50,6 +57,8 @@ export function AuthProvider({ children }) {
     signIn,
     signInAsGuest,
     signOut,
+    deleteAccount,
+    changePassword,
   };
 
   return (

@@ -6,4 +6,5 @@ export const firebaseErrorConstants = {
   "auth/email-already-in-use": "Email address already in use.",
   "auth/weak-password": "Password must be at least 6 characters.",
   "auth/operation-not-allowed": "Error during sign up.",
+  "auth/requires-recent-login": "Please log out and log back in to complete this action.",
 };

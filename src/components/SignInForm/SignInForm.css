@@ -109,13 +109,6 @@
   color: hsla(0, 0%, 100%, 0.75);
 }
 
-.sign-in__firebase-error {
-  display: grid;
-  place-items: center;
-  height: 40px;
-  color: red;
-}
-
 .sign-in__confirm-field-placeholder {
   height: 59.5px;
 }
