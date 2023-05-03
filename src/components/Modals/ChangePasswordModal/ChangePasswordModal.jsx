@@ -23,11 +23,13 @@ function ChangePasswordModal({closeModal}) {
 
         try {
             setLoading(true);
-            await changePassword(newPasswordRef.current.value);
+            await changePassword(newPasswordRef.current.value).then(() => {
+                closeModal();
+            });
         } catch (error) {
             setError(firebaseErrorConstants[error.code]);
-            setLoading(false);
         }
+        setLoading(false);
     }
 
     function passwordsPassValidation(){
