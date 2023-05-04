@@ -59,11 +59,12 @@ button {
   display: grid;
   place-items: center;
   font-weight: 400;
+  transition: background-color 0.3s ease-in-out;
 }
 
 button:disabled {
   cursor: not-allowed;
-  background-color: #cccccc;
+  background-color: #5e5e5e !important;
 }
 
 label {
@@ -97,6 +98,7 @@ select:focus-visible {
 }
 
 .icon-wrapper {
+  width: unset;
   display: grid;
   place-items: center;
   box-shadow: #00000059 0px 5px 15px;
@@ -140,6 +142,11 @@ img {
   gap: 5px;
   font-weight: 400;
   font-size: 16px;
+}
+
+.input-inner-wrapper {
+  display: flex;
+  gap: 10px;
 }
 
 .required-field-text {

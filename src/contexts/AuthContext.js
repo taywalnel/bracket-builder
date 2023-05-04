@@ -36,6 +36,10 @@ export function AuthProvider({ children }) {
     return currentUser.updatePassword(newPassword);
   }
 
+  function sendPasswordResetEmail(email) {
+    return auth.sendPasswordResetEmail(email);
+  }
+
   useEffect(() => {
     auth
       .setPersistence(firebase.auth.Auth.Persistence.SESSION)
@@ -59,6 +63,7 @@ export function AuthProvider({ children }) {
     signOut,
     deleteAccount,
     changePassword,
+    sendPasswordResetEmail
   };
 
   return (

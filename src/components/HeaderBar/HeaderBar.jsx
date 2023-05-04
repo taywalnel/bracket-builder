@@ -1,7 +1,7 @@
+import Hamburger from "hamburger-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-import Hamburger from "hamburger-react";
 import "./HeaderBar.css";
 
 function HeaderBar({ isHamburgerMenuOpen, setIsHamburgerMenuOpen }) {
@@ -13,7 +13,6 @@ function HeaderBar({ isHamburgerMenuOpen, setIsHamburgerMenuOpen }) {
       await signOut();
       navigate("/");
     } catch {
-      debugger;
     }
   }
 

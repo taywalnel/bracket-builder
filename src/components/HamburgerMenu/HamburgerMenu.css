@@ -16,7 +16,7 @@
 .hamburger-menu__content {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 10px;
   align-items: center;
   color: white;
 }

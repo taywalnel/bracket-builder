@@ -21,8 +21,9 @@ function App() {
   const updateBracketsHandler = (updatedBrackets) => {
     setBrackets(updatedBrackets);
   }
-  const [modalContent, setModalContent] = useState(null);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
 
   const createBracketPage = <CreateBracketPage createNewBracket={createNewBracket} />;
   const savedBracketsPage = <SavedBracketsPage brackets={brackets} />;
@@ -32,7 +33,7 @@ function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route path="/sign-in" element={<SignInPage />} />
+        <Route path="/sign-in" element={<SignInPage/>} />
         <Route element={<PrivateRoutes />}>
           <Route path="/" element={<MainPageWrapper isModalOpen={isModalOpen}>{createBracketPage}</MainPageWrapper>} />
           <Route path="/saved" element={<MainPageWrapper isModalOpen={isModalOpen}>{savedBracketsPage}</MainPageWrapper>} />
