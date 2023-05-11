@@ -1,11 +1,14 @@
+import firebase from "firebase/compat/app";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import AddPlayerInput from "../../components/AddPlayerInput/AddPlayerInput";
+import { saveBracketForUser } from "../../services/BracketService";
 import { GenerateTournament } from "../../services/TournamentBuilderService";
 import "./CreateBracketPage.css";
 
-function CreateBracketPage({ createNewBracket }) {
+function CreateBracketPage({ setBrackets }) {
+  const currentUser = firebase.auth().currentUser;
   const [players, setPlayers] = useState([
     { name: "", isBye: false, id: uuidv4() },
   ]);
@@ -79,13 +82,14 @@ function CreateBracketPage({ createNewBracket }) {
     setPlayers((currentPlayers) => currentPlayers.filter((p) => p.id !== id));
   }
 
-  function generateBracketHandler() {
+  async function generateBracketHandler() {
     if (!inputsAreValid()) return;
     const updatedPlayers = removeBlankPlayers();
     const playersWithRanking = applyRankingToPlayers(updatedPlayers);
     const newBracket = GenerateTournament(tournamentName, playersWithRanking);
-    createNewBracket(newBracket);
+    setBrackets((currentBrackets) => [...currentBrackets, newBracket]);
     navigateToViewNewBracket(newBracket.id);
+    await saveBracketForUser(currentUser.uid, {...newBracket});
   }
 
   function removeBlankPlayers() {

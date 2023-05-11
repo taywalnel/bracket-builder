@@ -20,6 +20,7 @@ function ViewBracketPage({ brackets, setBrackets }) {
   }
   
   const roundLabels = getRoundLabels();
+  debugger;
   const bracketRounds = currentTournament?.bracket.map((round, index) => (
     <BracketRound
       key={`round-${index}`}

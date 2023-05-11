@@ -1,9 +1,30 @@
-import React from "react";
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
+import React, { useEffect } from "react";
 import SavedBracketListItem from "../../components/SavedBracketListItem/SavedBracketListItem";
+import { getBracketsForUser } from "../../services/BracketService";
 import "./SavedBracketsPage.css";
 
-function SavedBracketsPage({ brackets }) {
+function SavedBracketsPage({ brackets, setBrackets }) {
   const headers = ["Title", "Created on", "Players", "Status"];
+
+  useEffect(() => {
+    const getSavedBrackets = async () => {
+      const currentUser = firebase.auth().currentUser;
+
+      if (currentUser) {
+        try {
+          const savedBrackets = await getBracketsForUser(currentUser.uid);          
+          setBrackets(savedBrackets);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+
+    getSavedBrackets();
+  }, []);
+  
   return (
     <div className="page__root ">
       <h1 className="page-header">Saved brackets</h1>

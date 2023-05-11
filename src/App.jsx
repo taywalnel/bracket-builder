@@ -12,12 +12,8 @@ import SavedBracketsPage from "./pages/SavedBracketsPage/SavedBracketsPage";
 import SignInPage from "./pages/SignInPage/SignInPage";
 import ViewBracketPage from "./pages/ViewBracketPage/ViewBracketPage";
 
-
 function App() {
   const [brackets, setBrackets] = useState([]);
-  const createNewBracket = (newBracket) => {
-    setBrackets((currentBrackets) => [...currentBrackets, newBracket]);
-  }
   const updateBracketsHandler = (updatedBrackets) => {
     setBrackets(updatedBrackets);
   }
@@ -25,8 +21,8 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
 
-  const createBracketPage = <CreateBracketPage createNewBracket={createNewBracket} />;
-  const savedBracketsPage = <SavedBracketsPage brackets={brackets} />;
+  const createBracketPage = <CreateBracketPage setBrackets={setBrackets} />;
+  const savedBracketsPage = <SavedBracketsPage brackets={brackets} setBrackets={setBrackets} />;
   const viewBracketsPage = <ViewBracketPage brackets={brackets}  setBrackets={updateBracketsHandler} />;
   const profilePage = <ProfilePage setIsModalOpen={setIsModalOpen} setModalContent={setModalContent} />; 
   
