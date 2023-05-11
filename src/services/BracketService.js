@@ -16,7 +16,7 @@ export const deserializeBracket = (serializedBracket) => {
   return serializedBracket;
 };
 
-export const getBracketsForUser = async (uid) => {
+export const getBrackets = async (uid) => {
   const savedBrackets = [];
   const querySnapshot = await firebase
     .firestore()
@@ -29,10 +29,9 @@ export const getBracketsForUser = async (uid) => {
     savedBrackets.push(deserializedBracket);
   });
   return savedBrackets;
-}
+};
 
-export const saveBracketForUser = async (uid, bracket) => {
-  debugger;
+export const createBracket = async (uid, bracket) => {
   const serializedBracket = serializeBracket(bracket);
   await firebase
     .firestore()
@@ -41,6 +40,17 @@ export const saveBracketForUser = async (uid, bracket) => {
     .collection("brackets")
     .doc(serializedBracket.id)
     .set(serializedBracket);
+};
+
+export const updateBracket = async (uid, bracket) => {
+  const serializedBracket = serializeBracket(bracket);
+  await firebase
+    .firestore()
+    .collection("users")
+    .doc(uid)
+    .collection("brackets")
+    .doc(serializedBracket.id)
+    .update(serializedBracket);
 };
 
 const convertArrayToObject = (array) => {

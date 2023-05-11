@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import BracketRound from "../../components/BracketRound/BracketRound";
+import firebase from "firebase/compat/app";
 import "./ViewBracketPage.css";
+import { updateBracket } from "../../services/BracketService";
 
 function ViewBracketPage({ brackets, setBrackets }) {
   const navigate = useNavigate();
   const { id } = useParams();
   const currentTournament = brackets.find((b) => b.id === id);
+  const currentUser = firebase.auth().currentUser;
 
   useEffect(() => {
     if (!currentTournament) {
@@ -14,13 +17,11 @@ function ViewBracketPage({ brackets, setBrackets }) {
     }
   }, [currentTournament, navigate]);
 
-  
   if (!currentTournament) {
     return null;
   }
-  
+
   const roundLabels = getRoundLabels();
-  debugger;
   const bracketRounds = currentTournament?.bracket.map((round, index) => (
     <BracketRound
       key={`round-${index}`}
@@ -71,16 +72,17 @@ function ViewBracketPage({ brackets, setBrackets }) {
     updateTournament(currentTournament);
   }
 
-  function updateTournament(updatedTournament) {
+  async function updateTournament(updatedTournament) {
     const updatedTournaments = brackets.map((b) => {
       if (b.id === id) return updatedTournament;
       return b;
     });
     setBrackets(updatedTournaments);
+    await updateBracket(currentUser.uid, { ...updatedTournament });
   }
 
-  function getRoundLabels(){
-    const namedRounds = ["Final", "Semifinals",  "Quarterfinals"];
+  function getRoundLabels() {
+    const namedRounds = ["Final", "Semifinals", "Quarterfinals"];
     const roundLabels = [];
     const totalNumberOfRounds = currentTournament.bracket.length;
     const numberOfRoundsToLabel = totalNumberOfRounds - 3;
@@ -88,7 +90,9 @@ function ViewBracketPage({ brackets, setBrackets }) {
     for (let i = 0; i < numberOfRoundsToLabel; i++) {
       roundLabels.push(`Round ${i + 1}`);
     }
-    const namedRoundsToUse = namedRounds.slice(0, totalNumberOfRounds).reverse();
+    const namedRoundsToUse = namedRounds
+      .slice(0, totalNumberOfRounds)
+      .reverse();
     return [...roundLabels, ...namedRoundsToUse];
   }
 

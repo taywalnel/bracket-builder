@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import AddPlayerInput from "../../components/AddPlayerInput/AddPlayerInput";
-import { saveBracketForUser } from "../../services/BracketService";
+import { createBracket } from "../../services/BracketService";
 import { GenerateTournament } from "../../services/TournamentBuilderService";
 import "./CreateBracketPage.css";
 
@@ -89,7 +89,7 @@ function CreateBracketPage({ setBrackets }) {
     const newBracket = GenerateTournament(tournamentName, playersWithRanking);
     setBrackets((currentBrackets) => [...currentBrackets, newBracket]);
     navigateToViewNewBracket(newBracket.id);
-    await saveBracketForUser(currentUser.uid, {...newBracket});
+    await createBracket(currentUser.uid, { ...newBracket });
   }
 
   function removeBlankPlayers() {

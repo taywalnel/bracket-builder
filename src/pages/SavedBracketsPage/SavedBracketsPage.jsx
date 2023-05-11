@@ -2,7 +2,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import React, { useEffect } from "react";
 import SavedBracketListItem from "../../components/SavedBracketListItem/SavedBracketListItem";
-import { getBracketsForUser } from "../../services/BracketService";
+import { getBrackets } from "../../services/BracketService";
 import "./SavedBracketsPage.css";
 
 function SavedBracketsPage({ brackets, setBrackets }) {
@@ -14,7 +14,7 @@ function SavedBracketsPage({ brackets, setBrackets }) {
 
       if (currentUser) {
         try {
-          const savedBrackets = await getBracketsForUser(currentUser.uid);          
+          const savedBrackets = await getBrackets(currentUser.uid);
           setBrackets(savedBrackets);
         } catch (error) {
           console.error(error);
@@ -24,7 +24,7 @@ function SavedBracketsPage({ brackets, setBrackets }) {
 
     getSavedBrackets();
   }, []);
-  
+
   return (
     <div className="page__root ">
       <h1 className="page-header">Saved brackets</h1>
