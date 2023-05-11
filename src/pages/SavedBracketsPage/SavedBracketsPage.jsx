@@ -40,7 +40,11 @@ function SavedBracketsPage({ brackets, setBrackets }) {
           <div className="saved-page__list-items-wrapper2">
             <div className="saved-page__list-items-wrapper3">
               {brackets.map((bracket) => (
-                <SavedBracketListItem key={bracket.id} bracket={bracket} />
+                <SavedBracketListItem
+                  key={bracket.id}
+                  bracket={bracket}
+                  setBrackets={setBrackets}
+                />
               ))}
             </div>
           </div>

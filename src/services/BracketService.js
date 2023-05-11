@@ -53,6 +53,16 @@ export const updateBracket = async (uid, bracket) => {
     .update(serializedBracket);
 };
 
+export const deleteBracket = async (uid, bracketId) => {
+  await firebase
+    .firestore()
+    .collection("users")
+    .doc(uid)
+    .collection("brackets")
+    .doc(bracketId)
+    .delete();
+};
+
 const convertArrayToObject = (array) => {
   const object = {};
   array.forEach((item, index) => {

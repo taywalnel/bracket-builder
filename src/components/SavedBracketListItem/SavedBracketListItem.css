@@ -2,12 +2,19 @@
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.saved-item__columns-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   background-color: #616161;
   color: white;
   padding: 10px;
 }
 
-.saved-item__root:hover {
+.saved-item__columns-wrapper:hover {
   background-color: #38bdff;
   cursor: pointer;
 }
@@ -17,6 +24,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
   flex-basis: 100%;
+}
+
+.saved-item__icon-wrapper {
+  width: 35px;
+  height: 35px;
+  background-color: #ff4200;
 }
 
 @media (max-width: 600px) {
