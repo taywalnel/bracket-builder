@@ -45,7 +45,7 @@ function App() {
             }
           />
           <Route
-            path="/saved"
+            path="saved"
             element={
               <MainPageWrapper isModalOpen={isModalOpen}>
                 {savedBracketsPage}
@@ -53,7 +53,7 @@ function App() {
             }
           />
           <Route
-            path="/saved/:id"
+            path="saved/:id"
             element={
               <MainPageWrapper isModalOpen={isModalOpen}>
                 {viewBracketsPage}
@@ -61,7 +61,7 @@ function App() {
             }
           />
           <Route
-            path="/profile"
+            path="profile"
             element={
               <MainPageWrapper
                 isModalOpen={isModalOpen}
