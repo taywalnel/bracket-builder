@@ -89,7 +89,9 @@ function CreateBracketPage({ setBrackets }) {
     const newBracket = GenerateTournament(tournamentName, playersWithRanking);
     setBrackets((currentBrackets) => [...currentBrackets, newBracket]);
     navigateToViewNewBracket(newBracket.id);
-    await createBracket(currentUser.uid, { ...newBracket });
+    if (currentUser && !currentUser.isAnonymous) {
+      await createBracket(currentUser.uid, { ...newBracket });
+    }
   }
 
   function removeBlankPlayers() {

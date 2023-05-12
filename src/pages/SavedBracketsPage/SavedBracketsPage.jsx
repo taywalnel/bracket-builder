@@ -7,12 +7,26 @@ import "./SavedBracketsPage.css";
 
 function SavedBracketsPage({ brackets, setBrackets }) {
   const headers = ["Title", "Created on", "Players", "Status"];
+  const currentUser = firebase.auth().currentUser;
+
+  const savedBrackets = brackets.map((bracket) => (
+    <SavedBracketListItem
+      key={bracket.id}
+      bracket={bracket}
+      setBrackets={setBrackets}
+    />
+  ));
+  const authMessage = (
+    <span className="firebase-error" style={{ color: "white" }}>
+      You must sign in to save brackets
+    </span>
+  );
 
   useEffect(() => {
     const getSavedBrackets = async () => {
       const currentUser = firebase.auth().currentUser;
 
-      if (currentUser) {
+      if (currentUser && !currentUser.isAnonymous) {
         try {
           const savedBrackets = await getBrackets(currentUser.uid);
           setBrackets(savedBrackets);
@@ -39,13 +53,9 @@ function SavedBracketsPage({ brackets, setBrackets }) {
         <div className="saved-page__list-items-wrapper1">
           <div className="saved-page__list-items-wrapper2">
             <div className="saved-page__list-items-wrapper3">
-              {brackets.map((bracket) => (
-                <SavedBracketListItem
-                  key={bracket.id}
-                  bracket={bracket}
-                  setBrackets={setBrackets}
-                />
-              ))}
+              {currentUser && !currentUser.isAnonymous
+                ? savedBrackets
+                : authMessage}
             </div>
           </div>
         </div>
