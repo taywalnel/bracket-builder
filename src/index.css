@@ -11,11 +11,12 @@ body {
 
 #root {
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   font-family: "Inter", sans-serif;
   overflow: hidden;
+  touch-action: none;
 }
 
 a:-webkit-any-link {
@@ -60,6 +61,7 @@ button {
   place-items: center;
   font-weight: 400;
   transition: background-color 0.3s ease-in-out;
+  color: black;
 }
 
 button:disabled {
@@ -82,6 +84,10 @@ select {
   width: 100%;
   font-family: "Inter", sans-serif;
   font-size: 14px;
+}
+
+select {
+  color: black;
 }
 
 select {
